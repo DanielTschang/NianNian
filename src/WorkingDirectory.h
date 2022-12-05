@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RESOURCE_PATH_H
+#define RESOURCE_PATH_H
 
 #include <string>
 
@@ -19,3 +20,5 @@ public:
 private:
     std::string path;
 };
+
+#endif

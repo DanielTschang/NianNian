@@ -1,14 +1,47 @@
-#include "Game.hpp"
+#include "Game.h"
 
-Game::Game() : window("NianNian game engine")
+Game::Game() : window("that game engine")
 {
     vikingTexture.loadFromFile(workingDir.Get() + "viking.png");
     vikingSprite.setTexture(vikingTexture);
+
+    deltaTime = clock.restart().asSeconds();
 }
 
 void Game::Update()
 {
     window.Update();
+
+    const sf::Vector2f& spritePos = vikingSprite.getPosition();
+    const int moveSpeed = 100; //Pixels moved per second
+    
+    // get X-axis movement
+    int xMove = 0;
+    if(input.IsKeyPressed(Input::Key::Left))
+    {
+        xMove = -moveSpeed;
+    }
+    else if(input.IsKeyPressed(Input::Key::Right))
+    {
+        xMove = moveSpeed;
+    }
+    
+    // get Y-axis movement
+    int yMove = 0;
+    if(input.IsKeyPressed(Input::Key::Up))
+    {
+        yMove = -moveSpeed;
+    }
+    else if(input.IsKeyPressed(Input::Key::Down))
+    {
+        yMove = moveSpeed;
+    }
+
+    float xFrameMove = xMove * deltaTime; 
+    float yFrameMove = yMove * deltaTime;
+    
+
+    vikingSprite.setPosition(spritePos.x + xFrameMove, spritePos.y+yFrameMove);
 }
 
 void Game::LateUpdate()
@@ -19,7 +52,21 @@ void Game::LateUpdate()
 void Game::Draw()
 {
     window.BeginDraw();
+    
+    window.Draw(vikingSprite);
+    
     window.EndDraw();
+}
+
+void Game::getInput()
+{
+    input.Update();
+}
+
+
+void Game::CalculateDeltaTime()
+{
+    deltaTime = clock.restart().asSeconds();
 }
 
 bool Game::IsRunning() const

@@ -1,4 +1,4 @@
-#include "Game.hpp"
+#include "Game.h"
 
 int main()
 {
@@ -6,9 +6,11 @@ int main()
     
     while (game.IsRunning())
     {
+        game.getInput();
         game.Update();
         game.LateUpdate();
         game.Draw();
+        game.CalculateDeltaTime();
     }
     
     return 0;
