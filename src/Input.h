@@ -1,24 +1,25 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "Bitmask.h"
 
 class Input
 {    
     public:
-        enum class Key
+        enum class KEY
         {
-            None = 0,
-            Left = 1,
-            Right = 2,
-            Up = 3,
-            Down = 4,
-            Esc = 5
+            NONE = 0,
+            LEFT = 1,
+            RIGHT = 2,
+            UP = 3,
+            DOWN = 4,
+            ESC = 5
         };
 
 
     public:
-        bool IsKeyPressed(Key keycode); // Returns true if the key is pressed.
-        bool IsKeyDown(Key keycode); // Returns true if the key was just pressed.
-        bool IsKeyUp(Key keycode); // Returns true if the key was just released.
+        bool IsKeyPressed(KEY keycode); // Returns true if the key is pressed.
+        bool IsKeyDown(KEY keycode); // Returns true if the key was just pressed.
+        bool IsKeyUp(KEY keycode); // Returns true if the key was just released.
         void Update();
 
     private:
