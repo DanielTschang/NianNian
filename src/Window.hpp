@@ -5,6 +5,7 @@
 class Window
 {
 public:
+    Window();
     Window(const std::string& windowName);
 
     void Update();

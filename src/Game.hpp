@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-// #include "WorkingDictorry.hpp"
+#include "WorkingDirectory.hpp"
 #include "Window.hpp"
 #include <iostream>
 
@@ -12,6 +12,13 @@ public:
     void LateUpdate();
     void Draw();
     bool IsRunning() const;
+    void CalculateDeltaTime();
 private:
     Window window;
+    WorkingDirectory workingDir;
+    
+    sf::Texture vikingTexture;
+    sf::Sprite vikingSprite;
+    sf::Clock clock;
+    float deltaTime;
 };
