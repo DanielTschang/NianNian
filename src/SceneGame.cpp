@@ -30,21 +30,21 @@ void SceneGame::Update(float deltaTime)
     int xMove = 0;
     if(input.IsKeyPressed(Input::KEY::LEFT))
     {
-        xMove = -moveSpeed;
+        xMove -= moveSpeed;
     }
-    else if(input.IsKeyPressed(Input::KEY::RIGHT))
+    if(input.IsKeyPressed(Input::KEY::RIGHT))
     {
-        xMove = moveSpeed;
+        xMove += moveSpeed;
     }
     
     int yMove = 0;
     if(input.IsKeyPressed(Input::KEY::UP))
     {
-        yMove = -moveSpeed;
+        yMove -= moveSpeed;
     }
-    else if(input.IsKeyPressed(Input::KEY::DOWN))
+    if(input.IsKeyPressed(Input::KEY::DOWN))
     {
-        yMove = moveSpeed;
+        yMove += moveSpeed;
     }
     
     float xFrameMove = xMove * deltaTime;
