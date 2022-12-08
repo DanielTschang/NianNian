@@ -1,4 +1,6 @@
-#pragma once
+#ifndef WorkingDirectory_hpp
+#define WorkingDirectory_hpp
+
 
 #include <string>
 
@@ -19,3 +21,5 @@ public:
 private:
     std::string path;
 };
+
+#endif
