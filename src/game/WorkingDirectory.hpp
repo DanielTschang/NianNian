@@ -1,5 +1,6 @@
-#ifndef RESOURCE_PATH_H
-#define RESOURCE_PATH_H
+#ifndef WorkingDirectory_hpp
+#define WorkingDirectory_hpp
+
 
 #include <string>
 

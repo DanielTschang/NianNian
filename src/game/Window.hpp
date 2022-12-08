@@ -1,5 +1,5 @@
-#ifndef Window_h
-#define Window_h
+#ifndef Window_hpp
+#define Window_hpp
 
 #include <SFML/Graphics.hpp>
 
@@ -23,4 +23,5 @@ private:
     sf::RenderWindow window;
 };
 
-#endif /* Window_hpp */
+
+#endif

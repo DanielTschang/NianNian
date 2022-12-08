@@ -1,4 +1,5 @@
-#pragma once
+#ifndef Bitmask_hpp
+#define Bitmask_hpp
 
 #include <stdint.h>
 
@@ -31,3 +32,5 @@ public:
 private:
     uint32_t bits; // 1.
 };
+
+#endif /* Bitmask_hpp */

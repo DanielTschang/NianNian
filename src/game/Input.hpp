@@ -1,6 +1,8 @@
-#pragma once
+#ifndef Input_hpp
+#define Input_hpp
+
 #include <SFML/Graphics.hpp>
-#include "Bitmask.h"
+#include "Bitmask.hpp"
 
 class Input
 {    
@@ -26,3 +28,5 @@ class Input
         Bitmask thisFrameKeys;
         Bitmask lastFrameKeys;
 };
+
+#endif

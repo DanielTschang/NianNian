@@ -1,9 +1,11 @@
-#pragma once
+#ifndef SceneSplashScreen_hpp
+#define SceneSplashScreen_hpp
+
 
 #include <SFML/Graphics.hpp>
 
-#include "SceneStateMachine.h"
-#include "WorkingDirectory.h"
+#include "SceneStateMachine.hpp"
+#include "WorkingDirectory.hpp"
 
 class SceneSplashScreen : public Scene
 {
@@ -39,3 +41,5 @@ private:
     // The state we want to transition to when this scenes time expires.
     unsigned int switchToState;
 };
+
+#endif

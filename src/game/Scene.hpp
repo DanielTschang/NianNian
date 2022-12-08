@@ -1,5 +1,8 @@
-#pragma once
-#include "Window.h"
+#ifndef Scene_hpp
+#define Scene_hpp
+
+
+#include "Window.hpp"
 
 class Scene
 {
@@ -22,6 +25,8 @@ class Scene
       // The below functions can be overridden as necessary in our scenes.
       virtual void processInput() {};
       virtual void Update(float deltaTime) {};
-      virtual void lateUpdate(float deltaTime) {};
+      virtual void LateUpdate(float deltaTime) {};
       virtual void Draw(Window& window) {};
 };
+
+#endif

@@ -1,5 +1,4 @@
-
-#include "SceneStateMachine.h"
+#include "SceneStateMachine.hpp"
 
 SceneStateMachine::SceneStateMachine() : scenes(0), curScene(0) { }
 
@@ -19,11 +18,11 @@ void SceneStateMachine::Update(float deltaTime)
     }
 }
 
-void SceneStateMachine::lateUpdate(float deltaTime)
+void SceneStateMachine::LateUpdate(float deltaTime)
 {
     if(curScene)
     {
-        curScene->lateUpdate(deltaTime);
+        curScene->LateUpdate(deltaTime);
     }
 }
 

@@ -1,9 +1,10 @@
-#pragma once
+#ifndef SceneStateMachine_hpp
+#define SceneStateMachine_hpp
 
 #include <memory>
 
-#include "Scene.h"
-#include "Window.h"
+#include "Scene.hpp"
+#include "Window.hpp"
 
 class SceneStateMachine
 {
@@ -13,7 +14,7 @@ class SceneStateMachine
 		// will call the correspond methods of the active scene.
 		void processInput();
 		void Update(float deltaTime);
-		void lateUpdate(float deltaTime);
+		void LateUpdate(float deltaTime);
 		void Draw(Window& window);
 
 		// Adds a scene to the state machine and returns the id of that scene.
@@ -35,3 +36,6 @@ class SceneStateMachine
 		// Stores our current scene id. This is incremented whenever a scene is added.
 		unsigned int insertedSceneID; 
 };
+
+
+#endif

@@ -1,6 +1,6 @@
-#include "Game.h"
+#include "Game.hpp"
 
-Game::Game() : window("that game engine")
+Game::Game() : window("NianNian Adventure")
 {
     // This creates a smart pointer to a splash screen scene.
     std::shared_ptr<SceneSplashScreen> splashScreen = 
@@ -30,7 +30,7 @@ void Game::Update()
 
 void Game::LateUpdate()
 {
-    sceneManager.lateUpdate(deltaTime);
+    sceneManager.LateUpdate(deltaTime);
 }
 
 void Game::Draw()

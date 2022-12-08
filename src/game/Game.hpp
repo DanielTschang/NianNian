@@ -1,14 +1,16 @@
-#ifndef Game_h
-#define Game_h
+#ifndef Game_hpp
+#define Game_hpp
+
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "WorkingDirectory.h"
-#include "Window.h"
-#include "Input.h"
+#include "WorkingDirectory.hpp"
+#include "Window.hpp"
+#include "Input.hpp"
 
-#include "SceneStateMachine.h"
-#include "SceneSplashScreen.h"
-#include "SceneGame.h"
+#include "SceneStateMachine.hpp"
+#include "SceneSplashScreen.hpp"
+#include "SceneGame.hpp"
 
 
 class Game
@@ -38,4 +40,5 @@ private:
     
 };
 
-#endif /* Game_hpp */
+
+#endif
