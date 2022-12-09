@@ -2,6 +2,8 @@
 #define SceneStateMachine_hpp
 
 #include <memory>
+#include <iostream>
+#include <unordered_map>
 
 #include "Scene.hpp"
 #include "Window.hpp"

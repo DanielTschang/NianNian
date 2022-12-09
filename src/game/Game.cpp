@@ -25,7 +25,6 @@ void Game::Update()
 {
     window.Update();
     sceneManager.Update(deltaTime);
-
 }
 
 void Game::LateUpdate()
