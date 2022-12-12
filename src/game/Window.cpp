@@ -44,3 +44,7 @@ sf::Vector2u Window::getCentre() const
     
     return sf::Vector2u(size.x / 2, size.y / 2);
 }
+
+sf::Vector2u Window::getSize() const {
+    return this->window.getSize();
+}

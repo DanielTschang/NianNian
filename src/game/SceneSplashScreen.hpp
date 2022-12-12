@@ -3,15 +3,15 @@
 
 
 #include <SFML/Graphics.hpp>
-
-#include "SceneStateMachine.hpp"
 #include "WorkingDirectory.hpp"
+#include "SceneStateMachine.hpp"
+
 
 class SceneSplashScreen : public Scene
 {
 public:
-    SceneSplashScreen(WorkingDirectory& workingDir, 
-		SceneStateMachine& sceneStateMachine, Window& window);
+    SceneSplashScreen(WorkingDirectory& workingDir,
+        SceneStateMachine& sceneStateMachine, Window& window);
 
     void onCreate() override;
     void onDestroy() override;
@@ -29,7 +29,7 @@ private:
     sf::Sprite splashSprite;
     
     WorkingDirectory& workingDir;
-    SceneStateMachine& sceneStateMachine;
+    SceneStateMachine& sceneManager;
     Window& window;
     
     // We want to show this scene for a set amount of time

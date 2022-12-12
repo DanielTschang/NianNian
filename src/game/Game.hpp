@@ -10,6 +10,7 @@
 
 #include "SceneStateMachine.hpp"
 #include "SceneSplashScreen.hpp"
+#include "SceneMainMenu.hpp"
 #include "SceneGame.hpp"
 
 
@@ -17,25 +18,21 @@ class Game
 {
 public:
     Game();
-    
-    
+    void getInput();
     void Update();
     void LateUpdate();
-    void Draw();
-    void getInput();
-
+    void Draw(); // render
     void CalculateDeltaTime(); 
+
     bool IsRunning() const;
     
 private:
     Window window;
     WorkingDirectory workingDir;
-    Input input;
 
     sf::Clock clock;
     float deltaTime;
 
-    SceneStateMachine sceneStateMachine;
     SceneStateMachine sceneManager;
     
 };

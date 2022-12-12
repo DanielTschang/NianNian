@@ -1,12 +1,6 @@
 #include "SceneGame.hpp"
-#include "C_Movement.hpp"
-#include <iostream>
 
-SceneGame::SceneGame(WorkingDirectory& workingDir) : workingDir(workingDir)
-{
-    
-}
-
+SceneGame::SceneGame(WorkingDirectory& workingDir, Window& window) : workingDir(workingDir), window(window){}
 void SceneGame::onCreate()
 {
     player = std::make_shared<Object>();

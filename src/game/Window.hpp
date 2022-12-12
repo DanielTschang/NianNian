@@ -16,6 +16,7 @@ public:
     void EndDraw();
 
     sf::Vector2u getCentre() const;
+    sf::Vector2u getSize() const;
     
     bool IsOpen() const;
     

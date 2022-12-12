@@ -20,7 +20,11 @@ void C_Movement::Update(float deltaTime)
 
     int xMove = 0;
     if(input->IsKeyPressed(Input::KEY::LEFT))
+    {
+        std::cout << "yo\n";
         xMove -= moveSpeed;
+    }
+
     if(input->IsKeyPressed(Input::KEY::RIGHT))
         xMove += moveSpeed;
 
@@ -32,5 +36,6 @@ void C_Movement::Update(float deltaTime)
     
     float xFrameMove = xMove * deltaTime;
     float yFrameMove = yMove * deltaTime;
+    
     owner->position->AddPosition(xFrameMove, yFrameMove);
 }

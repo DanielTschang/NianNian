@@ -1,7 +1,7 @@
 #include "SceneSplashScreen.hpp"
 
-SceneSplashScreen::SceneSplashScreen(WorkingDirectory& workingDir, SceneStateMachine& sceneStateMachine, Window& window) 
-: sceneStateMachine(sceneStateMachine), workingDir(workingDir), 
+SceneSplashScreen::SceneSplashScreen(WorkingDirectory& workingDir, SceneStateMachine& sceneManager, Window& window)
+: sceneManager(sceneManager), workingDir(workingDir),
 window(window), switchToState(0), currentSeconds(0.f), 
 showForSeconds(3.f) // We’ll show this splash screen for 3 seconds.
 {}
@@ -32,10 +32,10 @@ void SceneSplashScreen::onActivate()
 
 void SceneSplashScreen::onDestroy() { }
 
-void SceneSplashScreen::setSwitchToScene(unsigned int id) 
+void SceneSplashScreen::setSwitchToScene(unsigned int id)
 {
     // Stores the id of the scene that we will transition to.
-    switchToState = id; 
+    switchToState = id;
 }
 
 void SceneSplashScreen::Update(float deltaTime)
@@ -45,7 +45,7 @@ void SceneSplashScreen::Update(float deltaTime)
     if(currentSeconds >= showForSeconds) 
     {
   	// Switch states.
-        sceneStateMachine.switchTo(switchToState); 
+        sceneManager.switchTo(switchToState);
     }
 }
 
