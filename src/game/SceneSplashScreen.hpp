@@ -4,6 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "WorkingDirectory.hpp"
+#include <unordered_map>
 #include "SceneStateMachine.hpp"
 
 
