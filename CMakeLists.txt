@@ -19,7 +19,7 @@ file(GLOB HEADER_FILES src/game/*.hpp)
 add_executable(NianNian 
     src/Main.cpp
     ${SRC_FILES}
-    ${HEADER_FILES})
+    ${HEADER_FILES} src/game/ObjectCollection.cpp)
 FILE(COPY resources/ DESTINATION "${CMAKE_BINARY_DIR}/resources")
 # Set include directory search paths
 

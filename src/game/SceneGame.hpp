@@ -1,6 +1,7 @@
 #ifndef SceneGame_hpp
 #define SceneGame_hpp
 
+#include <iostream>
 #include "Window.hpp"
 #include "Scene.hpp"
 #include "Input.hpp"
@@ -8,7 +9,8 @@
 #include "Object.hpp"
 #include "C_Sprite.hpp"
 #include "C_Movement.hpp"
-#include <iostream>
+#include "ObjectCollection.hpp"
+
 
 class SceneGame : public Scene
 {
@@ -24,7 +26,7 @@ public:
     void LateUpdate(float deltaTime) override;
     
 private:
-    std::shared_ptr<Object> player;
+    ObjectCollection objects;
     Window& window;
     WorkingDirectory& workingDir;
     Input input;

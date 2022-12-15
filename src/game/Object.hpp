@@ -11,7 +11,11 @@
 class Object
 {
 public:
-
+    std::shared_ptr<C_Position> position;
+private:
+    std::vector<std::shared_ptr<Component>> components;
+    bool queuedForRemoval;
+public:
     Object();
     // Awake is called when object created. Use to ensure 
     // required components are present.
@@ -24,10 +28,8 @@ public:
     void LateUpdate(float deltaTime);
     void Draw(Window& window);
 
-public:
-    std::shared_ptr<C_Position> position;
-private:
-    std::vector<std::shared_ptr<Component>> components;
+    bool IsQueuedForRemoval();
+    void QueueForRemoval();
 
 public:
 

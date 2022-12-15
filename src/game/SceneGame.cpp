@@ -3,13 +3,15 @@
 SceneGame::SceneGame(WorkingDirectory& workingDir, Window& window) : workingDir(workingDir), window(window){}
 void SceneGame::onCreate()
 {
-    player = std::make_shared<Object>();
+    std::shared_ptr<Object> player = std::make_shared<Object>();
     
     // Adds a component by calling our previously written template function.
     auto sprite = player->AddComponent<C_Sprite>(); 
     auto movement = player->AddComponent<C_Movement>();
     sprite->Load(workingDir.Get() + "viking.png");
-    movement->SetInput(&input); 
+    movement->SetInput(&input);
+
+    objects.Add(player); // it will only add to newobject but wouldn't update.
 }
 
 void SceneGame::onDestroy()
@@ -24,15 +26,17 @@ void SceneGame::processInput()
 
 void SceneGame::Update(float deltaTime)
 {
-    player->Update(deltaTime); 
+    objects.ProcessRemovals();
+    objects.ProcessNewObjects();
+    objects.Update(deltaTime);
 }
 
 void SceneGame::Draw(Window& window)
 {
-    player->Draw(window);
+    objects.Draw(window);
 }
 
 void SceneGame::LateUpdate(float deltaTime)
 {
-     player->LateUpdate(deltaTime);
+     objects.LateUpdate(deltaTime);
 }

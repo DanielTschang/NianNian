@@ -9,3 +9,5 @@ include/*
 /cmake-build-debug/
 /.vscode/
 /.idea/
+/cmake-build-debug-coverage/
+/cmake-build-debug/
