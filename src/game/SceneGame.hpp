@@ -10,12 +10,13 @@
 #include "C_Sprite.hpp"
 #include "C_Movement.hpp"
 #include "ObjectCollection.hpp"
+#include "C_Animation.hpp"
 
 
 class SceneGame : public Scene
 {
 public:
-    SceneGame(WorkingDirectory& workingDir, Window& window);
+    SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator);
 
     void onCreate() override;
     void onDestroy() override;
@@ -27,9 +28,9 @@ public:
     
 private:
     ObjectCollection objects;
-    Window& window;
     WorkingDirectory& workingDir;
     Input input;
+    ResourceAllocator<sf::Texture>& textureAllocator;
 };
 
 #endif

@@ -22,7 +22,7 @@ public:
         }
 
         resources.insert(std::make_pair(filePath, std::make_pair(currentID, resource)));
-        currentID++;
+        return currentID++;
     }
     void Remove(int id)
     {
@@ -36,7 +36,7 @@ public:
     }
     std::shared_ptr<T> Get(int id)
     {
-        for(auto it = resoruces.begin(); it != resources.end(); it++)
+        for(auto it = resources.begin(); it != resources.end(); it++)
         {
             if(it->second.first == id)
             {

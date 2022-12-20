@@ -1,10 +1,9 @@
 #include "SceneSplashScreen.hpp"
 
-SceneSplashScreen::SceneSplashScreen(WorkingDirectory& workingDir, SceneStateMachine& sceneManager, Window& window)
-: sceneManager(sceneManager), workingDir(workingDir),
-window(window), switchToState(0), currentSeconds(0.f), 
-showForSeconds(3.f) // We’ll show this splash screen for 3 seconds.
-{}
+SceneSplashScreen::SceneSplashScreen(WorkingDirectory& workingDir, SceneStateMachine& sceneManager, Window& window, ResourceAllocator<sf::Texture>& textureAllocator) : sceneManager(sceneManager), workingDir(workingDir), window(window), switchToState(0), currentSeconds(0.f), showForSeconds(3.f), textureAllocator(textureAllocator)
+{
+
+}
 
 void SceneSplashScreen::onCreate() 
 {

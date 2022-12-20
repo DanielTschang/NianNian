@@ -6,13 +6,12 @@
 #include "WorkingDirectory.hpp"
 #include <unordered_map>
 #include "SceneStateMachine.hpp"
-
+#include "ResourceAllocator.hpp"
 
 class SceneSplashScreen : public Scene
 {
 public:
-    SceneSplashScreen(WorkingDirectory& workingDir,
-        SceneStateMachine& sceneStateMachine, Window& window);
+    SceneSplashScreen(WorkingDirectory& workingDir, SceneStateMachine& sceneManager, Window& window, ResourceAllocator<sf::Texture>& textureAllocator);
 
     void onCreate() override;
     void onDestroy() override;
@@ -41,6 +40,8 @@ private:
 
     // The state we want to transition to when this scenes time expires.
     unsigned int switchToState;
+
+    ResourceAllocator<sf::Texture>& textureAllocator;
 };
 
 #endif

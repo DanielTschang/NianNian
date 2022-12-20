@@ -3,6 +3,7 @@
 
 #include "Component.hpp"
 #include "Input.hpp"
+#include "C_Animation.hpp"
 // #include "Object.hpp"
 class Object;
 
@@ -14,10 +15,12 @@ class C_Movement : public Component
     void SetInput(Input* input);
     void SetMovementSpeed(int moveSpeed);
     void Update(float deltaTime) override;
+    void Awake();
     
   private:
     int moveSpeed; 
     Input* input;
+    std::shared_ptr<C_Animation> animation;
 };
 
 #endif /* Movement*/

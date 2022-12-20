@@ -4,10 +4,10 @@ Game::Game() : window("NianNian Adventure")
 {
     // This creates a smart pointer to a splash screen scene.
     std::shared_ptr<SceneSplashScreen> splashScreen = 
-        std::make_shared<SceneSplashScreen>(workingDir, sceneManager, window);
-    
+        std::make_shared<SceneSplashScreen>(workingDir, sceneManager, window, textureAllocator);
+
     // This creates a smart pointer to a game screen scene.
-    std::shared_ptr<SceneGame> gameScene = std::make_shared<SceneGame>(workingDir, window);
+    std::shared_ptr<SceneGame> gameScene = std::make_shared<SceneGame>(workingDir, textureAllocator);
     std::shared_ptr<SceneMainMenu> menuScene =
             std::make_shared<SceneMainMenu>(workingDir, sceneManager, window);
        
@@ -16,7 +16,7 @@ Game::Game() : window("NianNian Adventure")
     unsigned int menuSceneID= sceneManager.Add(menuScene);
     
     // Now that we have our game scene id, we can set the splash screen to transition to the game scene.
-    splashScreen->setSwitchToScene(menuSceneID);
+    splashScreen->setSwitchToScene(gameSceneID);
     
     // We want the game to start at the splash screen
     sceneManager.switchTo(splashScreenID);

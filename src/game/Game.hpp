@@ -35,6 +35,7 @@ private:
     float deltaTime;
 
     SceneStateMachine sceneManager;
+    ResourceAllocator<sf::Texture> textureAllocator;
     
 };
 
