@@ -13,13 +13,18 @@ class WorkingDirectory
 public:
     WorkingDirectory();
     
-    inline const std::string& Get()
+    static const std::string GetWindowConfig()
     {
-        return path;
+        return "./Config/";
+    }
+    static const std::string Get()
+    {
+        return "./resources/";
     }
     
 private:
     std::string path;
+    std::string configPath;
 };
 
 #endif

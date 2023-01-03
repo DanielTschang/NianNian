@@ -3,6 +3,7 @@
 WorkingDirectory::WorkingDirectory()
 {
     path = "./resources/";
+    configPath = "./Config/";
     
 #ifdef MACOS
     
