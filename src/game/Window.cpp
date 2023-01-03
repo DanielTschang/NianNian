@@ -1,8 +1,34 @@
 #include "Window.hpp"
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
-Window::Window(const std::string& windowName) : window(sf::VideoMode(800, 600), windowName, sf::Style::Titlebar)
+Window::Window(const std::string& windowName)
 {
-    window.setVerticalSyncEnabled(true);
+    //load the config file
+    std::ifstream ifs(WorkingDirectory::GetWindowConfig() + "Window.ini");
+
+    //init the variables
+    std::string windowTitle = windowName;
+    sf::VideoMode windowBounds(800, 600);
+    unsigned framerateLimit = 120;
+    bool verticalSyncEnabled = true;
+
+
+    //if config file is loaded then change the variables
+    if(ifs.is_open())
+    {
+        std::getline(ifs, windowTitle);
+        ifs >> windowBounds.width >> windowBounds.height;
+        ifs >> framerateLimit;
+        ifs >> verticalSyncEnabled;
+    }
+
+    ifs.close();
+
+    this->window.create(windowBounds, windowTitle,sf::Style::Titlebar);
+    this->window.setVerticalSyncEnabled(verticalSyncEnabled);
+    this->window.setFramerateLimit(framerateLimit);
 }
 
 void Window::Update()
