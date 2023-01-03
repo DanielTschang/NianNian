@@ -21,6 +21,7 @@ add_executable(NianNian
     ${SRC_FILES}
     ${HEADER_FILES} src/game/ObjectCollection.cpp src/game/Animation.cpp src/game/Animation.hpp src/game/C_Animation.cpp src/game/C_Animation.hpp src/game/TileMap.cpp src/game/TileMap.hpp src/game/TileMapParser.cpp src/game/TileMapParser.hpp src/game/utils.hpp)
 FILE(COPY resources/ DESTINATION "${CMAKE_BINARY_DIR}/resources")
+FILE(COPY Config/ DESTINATION "${CMAKE_BINARY_DIR}/Config")
 # Set include directory search paths
 
 target_include_directories(NianNian PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
