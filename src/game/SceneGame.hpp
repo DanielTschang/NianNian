@@ -28,6 +28,7 @@ public:
     void Update(const float &deltaTime) override;
     void Draw(Window& window) override;
     void LateUpdate(const float &deltaTime) override;
+    void closeScene() override;
     
 private:
     ObjectCollection objects;

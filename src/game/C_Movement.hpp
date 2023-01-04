@@ -4,7 +4,7 @@
 #include "Component.hpp"
 #include "Input.hpp"
 #include "C_Animation.hpp"
-// #include "Object.hpp"
+#include "Object.hpp"
 class Object;
 
 

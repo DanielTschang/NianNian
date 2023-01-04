@@ -39,6 +39,7 @@ public:
     void updateEvents();
 
     bool IsRunning() const;
+    void isClose();
     
 private:
     Window* window;

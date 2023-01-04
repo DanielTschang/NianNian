@@ -20,6 +20,7 @@ public:
     sf::Vector2u getSize() const;
     
     bool IsOpen() const;
+    void closeWindow();
     
 private:
     sf::RenderWindow window;

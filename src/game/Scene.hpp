@@ -11,6 +11,8 @@
 
 class Scene
 {
+protected:
+    bool isClose;
 public:
   // Called when scene is created initially . Called once.
   virtual void onCreate() = 0;
@@ -31,5 +33,6 @@ public:
   virtual void Update(const float& deltaTime) = 0;
   virtual void LateUpdate(const float& deltaTime){};
   virtual void Draw(Window& window) = 0 ;
+  virtual void closeScene() = 0;
 };
 #endif

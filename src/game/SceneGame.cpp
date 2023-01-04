@@ -1,6 +1,6 @@
 #include "SceneGame.hpp"
 
-SceneGame::SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator) : workingDir(workingDir), textureAllocator(textureAllocator), mapParser(textureAllocator)  { }
+SceneGame::SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator) : workingDir(workingDir), textureAllocator(textureAllocator), mapParser(textureAllocator), isClose(false) { }
 
 void SceneGame::onCreate()
 {
@@ -86,4 +86,11 @@ void SceneGame::Draw(Window& window)
 void SceneGame::LateUpdate(const float& deltaTime)
 {
      objects.LateUpdate(deltaTime);
+}
+
+void SceneGame::closeScene() {
+    if(this->input.IsKeyPressed(Input::KEY::ESC))
+    {
+        this->isClose = true;
+    }
 }

@@ -40,26 +40,26 @@ Game::~Game() {
 void Game::Update()
 {
     window->Update();
-    sceneManager.Update(deltaTime);
+    sceneManager->Update(deltaTime);
 }
 
 void Game::LateUpdate()
 {
-    sceneManager.LateUpdate(deltaTime);
+    sceneManager->LateUpdate(deltaTime);
 }
 
 void Game::Draw()
 {
     window->BeginDraw(); //sf::window.clear()
 
-    sceneManager.Draw(*window); //scene draw
+    sceneManager->Draw(*window); //scene draw
 
     window->EndDraw(); //sf::window.display
 }
 
 void Game::getInput()
 {
-    sceneManager.processInput();
+    sceneManager->processInput();
 }
 
 /*
@@ -75,6 +75,14 @@ bool Game::IsRunning() const
     return window->IsOpen();
 }
 
+void Game::isClose()
+{
+    if(sceneManager->isEmpty())
+    {
+        window->closeWindow();
+    }
+}
+
 void Game::run() {
     while (this->IsRunning())
     {
@@ -83,6 +91,7 @@ void Game::run() {
         this->LateUpdate();
         this->Draw();
         this->CalculateDeltaTime();
+        this->isClose();
     }
 }
 

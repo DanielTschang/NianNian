@@ -74,3 +74,7 @@ sf::Vector2u Window::getCentre() const
 sf::Vector2u Window::getSize() const {
     return this->window.getSize();
 }
+
+void Window::closeWindow() {
+    this->window.close();
+}
