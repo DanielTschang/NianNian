@@ -21,7 +21,7 @@ public:
     // Stores the id of the scene that we will transition to.
     void setSwitchToScene(unsigned int id);
 
-    void Update(float deltaTime) override;
+    void Update(const float& deltaTime) override;
     void Draw(Window& window) override;
     
 private:

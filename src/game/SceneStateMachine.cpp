@@ -2,6 +2,15 @@
 
 SceneStateMachine::SceneStateMachine() : scenes(0), curScene(0) { }
 
+SceneStateMachine::~SceneStateMachine() {
+
+    for (auto it = this->scenes.begin(); it != this->scenes.end(); it++)
+    {
+        delete it->second;
+    }
+    scenes.clear();
+}
+
 void SceneStateMachine::processInput()
 {
     if(curScene)
@@ -35,7 +44,7 @@ void SceneStateMachine::Draw(Window& window)
 }
 
 
-unsigned int SceneStateMachine::Add(std::shared_ptr<Scene> scene)
+unsigned int SceneStateMachine::Add(Scene *scene)
 {
     auto inserted = scenes.insert(std::make_pair(insertedSceneID, scene));
     
@@ -62,7 +71,7 @@ void SceneStateMachine::Remove(unsigned int id)
         
         // We make sure to call the OnDestroy method 
         // of the scene we are removing.
-        it->second->onDestroy(); 
+        it->second->onDestroy();
         
         scenes.erase(it);
     }
@@ -85,3 +94,10 @@ void SceneStateMachine::switchTo(unsigned int id)
         curScene->onActivate();
     }
 }
+
+bool SceneStateMachine::isEmpty() {
+    if(this->curScene == nullptr) return false;
+    return true;
+}
+
+

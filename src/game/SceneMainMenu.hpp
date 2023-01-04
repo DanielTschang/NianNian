@@ -21,9 +21,9 @@ public:
     void onDestroy() override;
 
     void processInput() override;
-    void Update(float deltaTime) override;
+    void Update(const float &deltaTime) override;
     void Draw(Window& window) override;
-    void LateUpdate(float deltaTime) override;
+    void LateUpdate(const float &deltaTime) override;
 private:
     WorkingDirectory& workingDir;
     Window& window;

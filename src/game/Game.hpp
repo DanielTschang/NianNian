@@ -22,6 +22,7 @@ class Game
 private:
     void initWindow();
     void initWindow(std::string WindowName);
+    void initState();
 
 public:
     //Constructor / Destructor
@@ -46,7 +47,7 @@ private:
     sf::Clock deltaTimeClock;
     float deltaTime;
 
-    SceneStateMachine sceneManager;
+    SceneStateMachine* sceneManager;
     ResourceAllocator<sf::Texture> textureAllocator;
 
 };

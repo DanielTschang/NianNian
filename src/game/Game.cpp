@@ -8,36 +8,33 @@ void Game::initWindow(std::string WindowName) {
     this->window = new Window(WindowName);
 }
 
+void Game::initState()
+{
+    // This creates a pointer to a splash screen scene.
+    SceneSplashScreen *splashScreen = new SceneSplashScreen(workingDir, *sceneManager, *window, textureAllocator);
+    unsigned int splashScreenID = sceneManager->Add(splashScreen); // get the id of splash scene
+
+    // This creates a pointer to a game screen scene.
+    SceneGame *gameScene = new SceneGame(workingDir, textureAllocator);
+    unsigned int gameSceneID = sceneManager->Add(gameScene);
+
+    //we tell the splash screen which scene to switch after finished loading
+    splashScreen->setSwitchToScene(gameSceneID);
+
+    //switch to splash screen via sceneManager
+    this->sceneManager->switchTo(splashScreenID);
+}
+
 Game::Game()
 {
     this->initWindow("NianNianAdventure");
-
-
-
-    // This creates a smart pointer to a splash screen scene.
-//    std::shared_ptr<SceneSplashScreen> splashScreen =
-//        std::make_shared<SceneSplashScreen>(workingDir, sceneManager, window, textureAllocator);
-//
-//    // This creates a smart pointer to a game screen scene.
-//    std::shared_ptr<SceneGame> gameScene = std::make_shared<SceneGame>(workingDir, textureAllocator);
-//    std::shared_ptr<SceneMainMenu> menuScene =
-//            std::make_shared<SceneMainMenu>(workingDir, sceneManager, window);
-//
-//    unsigned int splashScreenID = sceneManager.Add(splashScreen);
-//    unsigned int gameSceneID = sceneManager.Add(gameScene);
-//    unsigned int menuSceneID= sceneManager.Add(menuScene);
-//
-//    // Now that we have our game scene id, we can set the splash screen to transition to the game scene.
-//    splashScreen->setSwitchToScene(gameSceneID);
-//
-//    // We want the game to start at the splash screen
-//    sceneManager.switchTo(splashScreenID);
-//
-//    deltaTime = clock.restart().asSeconds();
+    this->CalculateDeltaTime();
+    this->initState();
 }
 
 Game::~Game() {
     delete this->window;
+    delete this->sceneManager;
 }
 
 void Game::Update()
@@ -54,7 +51,7 @@ void Game::LateUpdate()
 void Game::Draw()
 {
     window->BeginDraw(); //sf::window.clear()
-    
+
     sceneManager.Draw(*window); //scene draw
 
     window->EndDraw(); //sf::window.display

@@ -37,7 +37,7 @@ void SceneSplashScreen::setSwitchToScene(unsigned int id)
     switchToState = id;
 }
 
-void SceneSplashScreen::Update(float deltaTime)
+void SceneSplashScreen::Update(const float& deltaTime)
 {
     currentSeconds += deltaTime;
     
