@@ -1,6 +1,7 @@
 #include "SceneGame.hpp"
 
-SceneGame::SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator) : workingDir(workingDir), textureAllocator(textureAllocator) { }
+SceneGame::SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator) : workingDir(workingDir), textureAllocator(textureAllocator), mapParser(textureAllocator)  { }
+
 void SceneGame::onCreate()
 {
     std::shared_ptr<Object> player = std::make_shared<Object>();
@@ -52,6 +53,12 @@ void SceneGame::onCreate()
     animation->AddAnimation(AnimationState::Walk, walkAnimation);
 
     objects.Add(player);
+
+    sf::Vector2i mapOffset(-100, 128);
+    std::vector<std::shared_ptr<Object>> levelTiles
+            = mapParser.Parse(workingDir.Get() + "Test Map 1.tmx", mapOffset);
+
+    objects.Add(levelTiles);
 }
 
 void SceneGame::onDestroy()
@@ -64,7 +71,7 @@ void SceneGame::processInput()
     input.Update();
 }
 
-void SceneGame::Update(float deltaTime)
+void SceneGame::Update(const float& deltaTime)
 {
     objects.ProcessRemovals();
     objects.ProcessNewObjects();
@@ -76,7 +83,7 @@ void SceneGame::Draw(Window& window)
     objects.Draw(window);
 }
 
-void SceneGame::LateUpdate(float deltaTime)
+void SceneGame::LateUpdate(const float& deltaTime)
 {
      objects.LateUpdate(deltaTime);
 }

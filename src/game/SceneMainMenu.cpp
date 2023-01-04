@@ -1,7 +1,3 @@
-//
-// Created by danchang11 on 2022/12/12.
-//
-
 #include "SceneMainMenu.hpp"
 #include <iostream>
 SceneMainMenu::SceneMainMenu
@@ -28,11 +24,11 @@ void SceneMainMenu::processInput()
     input.Update();
 }
 
-void SceneMainMenu::Update(float deltaTime)
+void SceneMainMenu::Update(const float &deltaTime)
 {
     if(input.IsKeyPressed(Input::KEY::LEFT))
     {
-        std::cout<< "ghgg\n";
+
     }
     if(input.IsKeyPressed(Input::KEY::RIGHT))
     {
@@ -48,7 +44,7 @@ void SceneMainMenu::Update(float deltaTime)
     }
 }
 
-void SceneMainMenu::LateUpdate(float deltaTime)
+void SceneMainMenu::LateUpdate(const float &deltaTime)
 {
 
 }

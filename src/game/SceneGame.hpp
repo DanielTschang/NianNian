@@ -11,26 +11,30 @@
 #include "C_Movement.hpp"
 #include "ObjectCollection.hpp"
 #include "C_Animation.hpp"
+#include "TileMapParser.hpp"
 
 
 class SceneGame : public Scene
 {
 public:
-    SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator);
+    SceneGame(WorkingDirectory &workingDir, ResourceAllocator<sf::Texture>& textureAllocator, TileMapParser& mapParser );
 
+    SceneGame(WorkingDirectory &workingDir, ResourceAllocator<sf::Texture> &textureAllocator);
+    ~SceneGame();
     void onCreate() override;
     void onDestroy() override;
     
     void processInput() override;
-    void Update(float deltaTime) override;
+    void Update(const float &deltaTime) override;
     void Draw(Window& window) override;
-    void LateUpdate(float deltaTime) override;
+    void LateUpdate(const float &deltaTime) override;
     
 private:
     ObjectCollection objects;
     WorkingDirectory& workingDir;
     Input input;
     ResourceAllocator<sf::Texture>& textureAllocator;
+    TileMapParser mapParser;
 };
 
 #endif
