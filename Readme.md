@@ -14,9 +14,9 @@ It's developed without game engines such as Unreal engine or Unity.
 ## Build and Run
 #### Build requirements
 - [SFML 2.5.1](https://www.sfml-dev.org/index.php) - interface
-- [Cmake >3.12](https://cmake.org/)
+- [Cmake 3.12+](https://cmake.org/)
 - C++ 17
-- g++ 8.3.0
+- g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
 
 #### Building and running valkyrie
 
