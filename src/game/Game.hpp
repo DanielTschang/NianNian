@@ -23,6 +23,7 @@ private:
     void initWindow();
     void initWindow(std::string WindowName);
     void initState();
+    void initVariables();
 
 public:
     //Constructor / Destructor
@@ -49,7 +50,7 @@ private:
     float deltaTime;
 
     SceneStateMachine* sceneManager;
-    ResourceAllocator<sf::Texture> textureAllocator;
+    ResourceAllocator<sf::Texture>* textureAllocator;
 
 };
 

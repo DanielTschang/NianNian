@@ -4,6 +4,11 @@ void Game::initWindow() {
     this->window = new Window("Default Game Name");
 }
 
+void Game::initVariables() {
+    this->sceneManager = new SceneStateMachine();
+    this->textureAllocator = new ResourceAllocator<sf::Texture>();
+}
+
 void Game::initWindow(std::string WindowName) {
     this->window = new Window(WindowName);
 }
@@ -11,22 +16,26 @@ void Game::initWindow(std::string WindowName) {
 void Game::initState()
 {
     // This creates a pointer to a splash screen scene.
-    SceneSplashScreen *splashScreen = new SceneSplashScreen(workingDir, *sceneManager, *window, textureAllocator);
+    SceneSplashScreen *splashScreen = new SceneSplashScreen(workingDir, *sceneManager, *window, *textureAllocator);
     unsigned int splashScreenID = sceneManager->Add(splashScreen); // get the id of splash scene
 
     // This creates a pointer to a game screen scene.
-    SceneGame *gameScene = new SceneGame(workingDir, textureAllocator);
+    SceneGame *gameScene = new SceneGame(workingDir, *textureAllocator);
     unsigned int gameSceneID = sceneManager->Add(gameScene);
 
+    SceneMainMenu *MainMenuScene = new SceneMainMenu(workingDir, *sceneManager, *window);
+    unsigned int MainMenuSceneID = sceneManager->Add(MainMenuScene);
     //we tell the splash screen which scene to switch after finished loading
     splashScreen->setSwitchToScene(gameSceneID);
 
     //switch to splash screen via sceneManager
-    this->sceneManager->switchTo(splashScreenID);
+//    this->sceneManager->switchTo(splashScreenID);
+    this->sceneManager->switchTo(MainMenuSceneID);
 }
 
 Game::Game()
 {
+    this->initVariables();
     this->initWindow("NianNianAdventure");
     this->CalculateDeltaTime();
     this->initState();
@@ -34,13 +43,12 @@ Game::Game()
 
 Game::~Game() {
     delete this->window;
-    delete this->sceneManager;
 }
 
 void Game::Update()
 {
     window->Update();
-    sceneManager->Update(deltaTime);
+    sceneManager->Update(deltaTime, *this->window);
 }
 
 void Game::LateUpdate()
@@ -91,13 +99,15 @@ void Game::run() {
         this->LateUpdate();
         this->Draw();
         this->CalculateDeltaTime();
-        this->isClose();
+//        this->isClose();
     }
 }
 
 void Game::updateEvents() {
 
 }
+
+
 
 
 
