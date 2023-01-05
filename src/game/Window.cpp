@@ -78,3 +78,7 @@ sf::Vector2u Window::getSize() const {
 void Window::closeWindow() {
     this->window.close();
 }
+
+const sf::RenderWindow &Window::getWindow() const {
+    return window;
+}

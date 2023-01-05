@@ -16,7 +16,7 @@ public:
 
     // will call the correspond methods of the active scene.
     void processInput();
-    void Update(float deltaTime);
+    void Update(float deltaTime, Window &window);
     void LateUpdate(float deltaTime);
     void Draw(Window& window);
 

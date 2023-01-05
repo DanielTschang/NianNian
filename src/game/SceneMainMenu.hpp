@@ -1,7 +1,3 @@
-//
-// Created by danchang11 on 2022/12/12.
-//
-
 #ifndef NIANNIAN_SCENEMAINMENU_HPP
 #define NIANNIAN_SCENEMAINMENU_HPP
 
@@ -10,10 +6,12 @@
 #include "SceneStateMachine.hpp"
 #include "Input.hpp"
 #include "Window.hpp"
+#include "Button.hpp"
 
-class WorkingDirectory;
 
 class SceneMainMenu : public Scene{
+private:
+    sf::RectangleShape background;
 public:
     SceneMainMenu();
     SceneMainMenu(WorkingDirectory& workingDir, SceneStateMachine& sceneManager, Window& window);
@@ -21,14 +19,12 @@ public:
     void onDestroy() override;
 
     void processInput() override;
-    void Update(const float &deltaTime) override;
+    void Update(const float &deltaTime, Window& window) override;
     void Draw(Window& window) override;
     void LateUpdate(const float &deltaTime) override;
+    void closeScene() override;
 private:
     WorkingDirectory& workingDir;
-    Window& window;
-    Input input;
-    sf::RectangleShape background;
     SceneStateMachine sceneManager;
 };
 

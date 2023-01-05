@@ -2,6 +2,7 @@
 #define Scene_hpp
 
 #include "Window.hpp"
+#include "Input.hpp"
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -12,7 +13,15 @@
 class Scene
 {
 protected:
+
+    Scene();
+
+    Input input;
     bool isClose;
+
+    sf::Vector2i mousePosScreen;
+    sf::Vector2i mousePosWindow;
+    sf::Vector2f mousePosView;
 public:
   // Called when scene is created initially . Called once.
   virtual void onCreate() = 0;
@@ -30,9 +39,10 @@ public:
   virtual void onDeactivate(){};
   // The below functions can be overridden as necessary in our scenes.
   virtual void processInput(){};
-  virtual void Update(const float& deltaTime) = 0;
+  virtual void Update(const float& deltaTime, Window& window) = 0;
   virtual void LateUpdate(const float& deltaTime){};
   virtual void Draw(Window& window) = 0 ;
   virtual void closeScene() = 0;
+  virtual void updateMousePosition(Window &window);
 };
 #endif

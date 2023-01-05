@@ -21,8 +21,9 @@ public:
     // Stores the id of the scene that we will transition to.
     void setSwitchToScene(unsigned int id);
 
-    void Update(const float& deltaTime) override;
+    void Update(const float& deltaTime, Window& window) override;
     void Draw(Window& window) override;
+    void closeScene() override;
     
 private:
     sf::Texture splashTexture;

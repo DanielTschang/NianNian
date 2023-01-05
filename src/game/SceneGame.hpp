@@ -25,15 +25,15 @@ public:
     void onDestroy() override;
     
     void processInput() override;
-    void Update(const float &deltaTime) override;
+    void Update(const float &deltaTime,Window& window) override;
     void Draw(Window& window) override;
     void LateUpdate(const float &deltaTime) override;
     void closeScene() override;
+    void initInput();
     
 private:
     ObjectCollection objects;
     WorkingDirectory& workingDir;
-    Input input;
     ResourceAllocator<sf::Texture>& textureAllocator;
     TileMapParser mapParser;
 };

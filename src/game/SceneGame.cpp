@@ -1,6 +1,10 @@
 #include "SceneGame.hpp"
 
-SceneGame::SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator) : workingDir(workingDir), textureAllocator(textureAllocator), mapParser(textureAllocator), isClose(false) { }
+SceneGame::SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator) : workingDir(workingDir), textureAllocator(textureAllocator), mapParser(textureAllocator)
+{
+    this->isClose = false;
+}
+
 
 void SceneGame::onCreate()
 {
@@ -13,7 +17,7 @@ void SceneGame::onCreate()
     //updating the sprite.
 
     auto movement = player->AddComponent<C_Movement>();
-    movement->SetInput(&input);
+    movement->SetInput(&this->input);
 
     // Add our new animation component:
     auto animation = player->AddComponent<C_Animation>();
@@ -71,7 +75,7 @@ void SceneGame::processInput()
     input.Update();
 }
 
-void SceneGame::Update(const float& deltaTime)
+void SceneGame::Update(const float& deltaTime,Window& window)
 {
     objects.ProcessRemovals();
     objects.ProcessNewObjects();

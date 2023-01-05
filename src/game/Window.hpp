@@ -24,6 +24,10 @@ public:
     
 private:
     sf::RenderWindow window;
+public:
+    const sf::RenderWindow &getWindow() const;
+
+    void setWindow(const sf::RenderWindow &window);
 };
 
 

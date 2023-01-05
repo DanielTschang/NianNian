@@ -19,11 +19,11 @@ void SceneStateMachine::processInput()
     }
 }
 
-void SceneStateMachine::Update(float deltaTime)
+void SceneStateMachine::Update(float deltaTime,Window& window)
 {
     if(curScene)    
     {
-        curScene->Update(deltaTime);
+        curScene->Update(deltaTime, window);
     }
 }
 
@@ -48,7 +48,7 @@ unsigned int SceneStateMachine::Add(Scene *scene)
 {
     auto inserted = scenes.insert(std::make_pair(insertedSceneID, scene));
     
-    // insertedSceneID++;
+//     insertedSceneID++;
 
     inserted.first->second->onCreate(); //inserted.first point to the scene that you just inseted, inserted.second is a boolean, if insert is successed, it will be true
     

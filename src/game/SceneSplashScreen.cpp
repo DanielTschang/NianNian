@@ -37,7 +37,7 @@ void SceneSplashScreen::setSwitchToScene(unsigned int id)
     switchToState = id;
 }
 
-void SceneSplashScreen::Update(const float& deltaTime)
+void SceneSplashScreen::Update(const float& deltaTime,Window& window)
 {
     currentSeconds += deltaTime;
     
@@ -51,4 +51,8 @@ void SceneSplashScreen::Update(const float& deltaTime)
 void SceneSplashScreen::Draw(Window& window)
 {
     window.Draw(splashSprite);
+}
+
+void SceneSplashScreen::closeScene() {
+
 }

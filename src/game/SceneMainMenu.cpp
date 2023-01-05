@@ -1,11 +1,12 @@
 #include "SceneMainMenu.hpp"
 #include <iostream>
+#include <cstdlib>
 SceneMainMenu::SceneMainMenu
 (WorkingDirectory& workingDir, SceneStateMachine& sceneManager, Window& window)
-    :workingDir(workingDir), sceneManager(sceneManager), window(window)
+    :workingDir(workingDir), sceneManager(sceneManager)
 {
-    this->background.setSize(static_cast<sf::Vector2f>(this->window.getSize()));
-    this->background.setFillColor(sf::Color::Magenta);
+    this->background.setSize(static_cast<sf::Vector2f>(window.getSize()));
+    this->background.setFillColor(sf::Color::Blue);
 }
 
 void SceneMainMenu::onDestroy()
@@ -21,27 +22,12 @@ void SceneMainMenu::onCreate()
 
 void SceneMainMenu::processInput()
 {
-    input.Update();
+    this->input.Update();
 }
 
-void SceneMainMenu::Update(const float &deltaTime)
+void SceneMainMenu::Update(const float &deltaTime, Window &window)
 {
-    if(input.IsKeyPressed(Input::KEY::LEFT))
-    {
-
-    }
-    if(input.IsKeyPressed(Input::KEY::RIGHT))
-    {
-
-    }
-    if(input.IsKeyPressed(Input::KEY::UP))
-    {
-
-    }
-    if(input.IsKeyPressed(Input::KEY::DOWN))
-    {
-
-    }
+    this->updateMousePosition(window);
 }
 
 void SceneMainMenu::LateUpdate(const float &deltaTime)
@@ -49,8 +35,13 @@ void SceneMainMenu::LateUpdate(const float &deltaTime)
 
 }
 
+
 void SceneMainMenu::Draw(Window &window)
 {
     window.Draw(this->background);
+}
+
+void SceneMainMenu::closeScene() {
+
 }
 
