@@ -5,6 +5,7 @@ SceneMainMenu::SceneMainMenu
 (WorkingDirectory& workingDir, SceneStateMachine& sceneManager, Window& window)
     :workingDir(workingDir), sceneManager(sceneManager)
 {
+    this->initFonts();
     this->background.setSize(static_cast<sf::Vector2f>(window.getSize()));
     this->background.setFillColor(sf::Color::Blue);
 }
@@ -42,6 +43,14 @@ void SceneMainMenu::Draw(Window &window)
 }
 
 void SceneMainMenu::closeScene() {
+
+}
+
+void SceneMainMenu::initFonts() {
+    if(!this->Font.loadFromFile(WorkingDirectory::GetFonts() + "JosefinSans-Light.ttf"))
+    {
+        throw "ERROR::MAINMENU:: COULD NOT LOAD FONT!";
+    }
 
 }
 

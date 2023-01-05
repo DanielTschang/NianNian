@@ -4,6 +4,7 @@ WorkingDirectory::WorkingDirectory()
 {
     path = "./resources/";
     configPath = "./Config/";
+    fontPath = "./Fonts/";
     
 #ifdef MACOS
     

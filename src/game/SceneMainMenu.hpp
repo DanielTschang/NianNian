@@ -12,9 +12,15 @@
 class SceneMainMenu : public Scene{
 private:
     sf::RectangleShape background;
+    sf::Font Font;
 public:
     SceneMainMenu();
     SceneMainMenu(WorkingDirectory& workingDir, SceneStateMachine& sceneManager, Window& window);
+
+    //init
+    void initFonts();
+
+    //functions
     void onCreate() override;
     void onDestroy() override;
 
