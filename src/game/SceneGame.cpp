@@ -1,6 +1,8 @@
 #include "SceneGame.hpp"
 
-SceneGame::SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator, Window& window) : Scene(window) ,workingDir(workingDir), textureAllocator(textureAllocator), mapParser(textureAllocator)
+SceneGame::SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator,
+                     Window& window, SceneStateMachine& sceneManager)
+                     : Scene(window, sceneManager), workingDir(workingDir), textureAllocator(textureAllocator), mapParser(textureAllocator)
 {
     this->isClose = false;
 }

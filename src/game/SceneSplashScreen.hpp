@@ -8,10 +8,11 @@
 #include "SceneStateMachine.hpp"
 #include "ResourceAllocator.hpp"
 
+
 class SceneSplashScreen : public Scene
 {
 public:
-    SceneSplashScreen(WorkingDirectory& workingDir, SceneStateMachine& sceneManager, Window& window, ResourceAllocator<sf::Texture>& textureAllocator);
+    SceneSplashScreen(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator, Window& window, SceneStateMachine& sceneManager);
 
     void onCreate() override;
     void onDestroy() override;
@@ -30,7 +31,6 @@ private:
     sf::Sprite splashSprite;
     
     WorkingDirectory& workingDir;
-    SceneStateMachine& sceneManager;
     
     // We want to show this scene for a set amount of time
     float showForSeconds;

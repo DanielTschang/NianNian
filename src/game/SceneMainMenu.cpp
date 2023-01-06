@@ -1,15 +1,13 @@
 #include "SceneMainMenu.hpp"
-#include <iostream>
-#include <cstdlib>
+
 SceneMainMenu::SceneMainMenu
-(WorkingDirectory& workingDir, SceneStateMachine& sceneManager, Window& window)
-    : Scene(window), workingDir(workingDir), sceneManager(sceneManager)
-{
+(WorkingDirectory& workingDir, Window& window, SceneStateMachine& sceneManager)
+        : Scene(window, sceneManager),workingDir(workingDir) {
     this->initButtons();
     this->background.setSize(static_cast<sf::Vector2f>(window.getSize()));
     this->background.setFillColor(sf::Color::Blue);
 }
-
+//SceneStateMachine* sceneManager
 SceneMainMenu::~SceneMainMenu() {
     for(auto it = this->buttonMap.begin(); it!=buttonMap.end(); it++)
     {

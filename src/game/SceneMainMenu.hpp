@@ -2,6 +2,7 @@
 #define NIANNIAN_SCENEMAINMENU_HPP
 
 #include <SFML/Graphics.hpp>
+#include "Scene.hpp"
 #include "WorkingDirectory.hpp"
 #include "SceneStateMachine.hpp"
 #include "Input.hpp"
@@ -20,7 +21,7 @@ private:
     std::map<std::string, Button*> buttonMap;
 public:
     SceneMainMenu();
-    SceneMainMenu(WorkingDirectory& workingDir, SceneStateMachine& sceneManager, Window& window);
+    SceneMainMenu(WorkingDirectory& workingDir, Window& window, SceneStateMachine& sceneManager);
     ~SceneMainMenu();
     //init
     void initFonts();
@@ -38,7 +39,6 @@ public:
     void updateButtons();
 private:
     WorkingDirectory& workingDir;
-    SceneStateMachine sceneManager;
 };
 
 #endif //NIANNIAN_SCENEMAINMENU_HPP

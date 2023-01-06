@@ -1,8 +1,7 @@
 #include "Scene.hpp"
 
-
-Scene::Scene(Window &window):isClose(false), window(window) {
-
+Scene::Scene(Window& window, SceneStateMachine& sceneManager) : isClose(false),window(window), sceneManager(sceneManager)
+{
 }
 
 void Scene::updateMousePosition(Window &window) {
@@ -17,3 +16,4 @@ void Scene::LateUpdate(const float &deltaTime) {
         window.closeWindow();
     }
 }
+

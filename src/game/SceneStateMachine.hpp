@@ -1,11 +1,12 @@
 #ifndef SceneStateMachine_hpp
 #define SceneStateMachine_hpp
 
+#include "Scene.hpp"
 #include <memory>
 #include <iostream>
 #include <unordered_map>
 
-#include "Scene.hpp"
+
 #include "Window.hpp"
 
 class SceneStateMachine

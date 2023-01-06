@@ -17,9 +17,8 @@
 class SceneGame : public Scene
 {
 public:
-    SceneGame(WorkingDirectory &workingDir, ResourceAllocator<sf::Texture>& textureAllocator, TileMapParser& mapParser ,Window& window);
-
-    SceneGame(WorkingDirectory &workingDir, ResourceAllocator<sf::Texture> &textureAllocator, Window &window);
+    SceneGame(WorkingDirectory &workingDir, ResourceAllocator<sf::Texture> &textureAllocator, Window &window,
+              SceneStateMachine &sceneManager);
 
     ~SceneGame();
     void onCreate() override;

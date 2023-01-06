@@ -1,9 +1,9 @@
 #include "SceneSplashScreen.hpp"
 
-SceneSplashScreen::SceneSplashScreen(WorkingDirectory& workingDir, SceneStateMachine& sceneManager, Window& window, ResourceAllocator<sf::Texture>& textureAllocator) : Scene(window),sceneManager(sceneManager), workingDir(workingDir), switchToState(0), currentSeconds(0.f), showForSeconds(3.f), textureAllocator(textureAllocator)
-{
-
-}
+SceneSplashScreen::SceneSplashScreen(WorkingDirectory &workingDir, ResourceAllocator<sf::Texture> &textureAllocator,
+                                     Window &window, SceneStateMachine &sceneManager):
+                                     Scene(window, sceneManager), workingDir(workingDir), switchToState(0), currentSeconds(0.f), showForSeconds(3.f), textureAllocator(textureAllocator)
+{}
 
 void SceneSplashScreen::onCreate() 
 {
@@ -44,7 +44,7 @@ void SceneSplashScreen::Update(const float& deltaTime)
     if(currentSeconds >= showForSeconds) 
     {
   	// Switch states.
-        sceneManager.switchTo(switchToState);
+        this->sceneManager.switchTo(switchToState);
     }
 }
 
@@ -56,3 +56,4 @@ void SceneSplashScreen::Draw(Window& window)
 void SceneSplashScreen::closeScene() {
 
 }
+
