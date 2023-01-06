@@ -63,7 +63,7 @@ std::vector<std::shared_ptr<Object>> TileMapParser::Parse(const std::string& fil
 
             float x = tile->x * tileSizeX * tileScale + offset.x;
             float y = tile->y * tileSizeY * tileScale + offset.y;
-            tileObject->transform->SetPosition(x, y);
+            tileObject->position->SetPosition(x, y);
 
             tileObjects.emplace_back(tileObject);
         }

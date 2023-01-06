@@ -62,7 +62,7 @@ void SceneGame::onCreate()
     std::vector<std::shared_ptr<Object>> levelTiles
             = mapParser.Parse(workingDir.Get() + "Test Map 1.tmx", mapOffset);
 
-    objects.Add(levelTiles);
+//    objects.Add(levelTiles);
 }
 
 void SceneGame::onDestroy()
