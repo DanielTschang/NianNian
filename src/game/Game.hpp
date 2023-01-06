@@ -7,9 +7,12 @@
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Network.hpp>
+#include "Scene.hpp"
+
 #include "WorkingDirectory.hpp"
 #include "Window.hpp"
 #include "Input.hpp"
+
 
 #include "SceneStateMachine.hpp"
 #include "SceneSplashScreen.hpp"

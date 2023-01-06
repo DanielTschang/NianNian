@@ -16,14 +16,14 @@ void Game::initWindow(std::string WindowName) {
 void Game::initState()
 {
     // This creates a pointer to a splash screen scene.
-    SceneSplashScreen *splashScreen = new SceneSplashScreen(workingDir, *sceneManager, *window, *textureAllocator);
+    SceneSplashScreen *splashScreen = new SceneSplashScreen(workingDir, *this->textureAllocator, *this->window, *this->sceneManager);
     unsigned int splashScreenID = sceneManager->Add(splashScreen); // get the id of splash scene
 
     // This creates a pointer to a game screen scene.
-    SceneGame *gameScene = new SceneGame(workingDir, *textureAllocator, *this->window);
+    SceneGame *gameScene = new SceneGame(workingDir, *textureAllocator, *this->window, *this->sceneManager);
     unsigned int gameSceneID = sceneManager->Add(gameScene);
 
-    SceneMainMenu *MainMenuScene = new SceneMainMenu(workingDir, *sceneManager, *window);
+    SceneMainMenu *MainMenuScene = new SceneMainMenu(workingDir,  *this->window, *this->sceneManager);
     unsigned int MainMenuSceneID = sceneManager->Add(MainMenuScene);
     //we tell the splash screen which scene to switch after finished loading
     splashScreen->setSwitchToScene(gameSceneID);
