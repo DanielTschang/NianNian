@@ -17,15 +17,16 @@
 class SceneGame : public Scene
 {
 public:
-    SceneGame(WorkingDirectory &workingDir, ResourceAllocator<sf::Texture>& textureAllocator, TileMapParser& mapParser );
+    SceneGame(WorkingDirectory &workingDir, ResourceAllocator<sf::Texture>& textureAllocator, TileMapParser& mapParser ,Window& window);
 
-    SceneGame(WorkingDirectory &workingDir, ResourceAllocator<sf::Texture> &textureAllocator);
+    SceneGame(WorkingDirectory &workingDir, ResourceAllocator<sf::Texture> &textureAllocator, Window &window);
+
     ~SceneGame();
     void onCreate() override;
     void onDestroy() override;
     
     void processInput() override;
-    void Update(const float &deltaTime,Window& window) override;
+    void Update(const float &deltaTime) override;
     void Draw(Window& window) override;
     void LateUpdate(const float &deltaTime) override;
     void closeScene() override;

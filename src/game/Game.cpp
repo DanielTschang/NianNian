@@ -20,7 +20,7 @@ void Game::initState()
     unsigned int splashScreenID = sceneManager->Add(splashScreen); // get the id of splash scene
 
     // This creates a pointer to a game screen scene.
-    SceneGame *gameScene = new SceneGame(workingDir, *textureAllocator);
+    SceneGame *gameScene = new SceneGame(workingDir, *textureAllocator, *this->window);
     unsigned int gameSceneID = sceneManager->Add(gameScene);
 
     SceneMainMenu *MainMenuScene = new SceneMainMenu(workingDir, *sceneManager, *window);
@@ -48,7 +48,7 @@ Game::~Game() {
 void Game::Update()
 {
     window->Update();
-    sceneManager->Update(deltaTime, *this->window);
+    sceneManager->Update(deltaTime);
 }
 
 void Game::LateUpdate()

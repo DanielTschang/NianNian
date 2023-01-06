@@ -16,8 +16,8 @@ public:
 
     // will call the correspond methods of the active scene.
     void processInput();
-    void Update(float deltaTime, Window &window);
-    void LateUpdate(float deltaTime);
+    void Update(const float& deltaTime);
+    void LateUpdate(const float& deltaTime);
     void Draw(Window& window);
 
     // Adds a scene to the state machine and returns the id of that scene.

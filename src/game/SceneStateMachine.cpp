@@ -19,15 +19,15 @@ void SceneStateMachine::processInput()
     }
 }
 
-void SceneStateMachine::Update(float deltaTime,Window& window)
+void SceneStateMachine::Update(const float& deltaTime)
 {
     if(curScene)    
     {
-        curScene->Update(deltaTime, window);
+        curScene->Update(deltaTime);
     }
 }
 
-void SceneStateMachine::LateUpdate(float deltaTime)
+void SceneStateMachine::LateUpdate(const float& deltaTime)
 {
     if(curScene)
     {

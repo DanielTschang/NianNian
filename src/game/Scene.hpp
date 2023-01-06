@@ -13,9 +13,10 @@
 class Scene
 {
 protected:
-
     Scene();
+    Scene(Window &window);
 
+    Window &window;
     Input input;
     bool isClose;
 
@@ -39,8 +40,8 @@ public:
   virtual void onDeactivate(){};
   // The below functions can be overridden as necessary in our scenes.
   virtual void processInput(){};
-  virtual void Update(const float& deltaTime, Window& window) = 0;
-  virtual void LateUpdate(const float& deltaTime){};
+  virtual void Update(const float& deltaTime) = 0;
+  virtual void LateUpdate(const float& deltaTime);
   virtual void Draw(Window& window) = 0 ;
   virtual void closeScene() = 0;
   virtual void updateMousePosition(Window &window);

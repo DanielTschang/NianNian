@@ -21,7 +21,7 @@ public:
     // Stores the id of the scene that we will transition to.
     void setSwitchToScene(unsigned int id);
 
-    void Update(const float& deltaTime, Window& window) override;
+    void Update(const float& deltaTime) override;
     void Draw(Window& window) override;
     void closeScene() override;
     
@@ -31,7 +31,6 @@ private:
     
     WorkingDirectory& workingDir;
     SceneStateMachine& sceneManager;
-    Window& window;
     
     // We want to show this scene for a set amount of time
     float showForSeconds;

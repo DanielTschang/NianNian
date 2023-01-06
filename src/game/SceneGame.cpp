@@ -1,6 +1,6 @@
 #include "SceneGame.hpp"
 
-SceneGame::SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator) : workingDir(workingDir), textureAllocator(textureAllocator), mapParser(textureAllocator)
+SceneGame::SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator, Window& window) : Scene(window) ,workingDir(workingDir), textureAllocator(textureAllocator), mapParser(textureAllocator)
 {
     this->isClose = false;
 }
@@ -75,7 +75,7 @@ void SceneGame::processInput()
     input.Update();
 }
 
-void SceneGame::Update(const float& deltaTime,Window& window)
+void SceneGame::Update(const float& deltaTime)
 {
     objects.ProcessRemovals();
     objects.ProcessNewObjects();
@@ -84,7 +84,7 @@ void SceneGame::Update(const float& deltaTime,Window& window)
 
 void SceneGame::Draw(Window& window)
 {
-    objects.Draw(window);
+    this->objects.Draw(window);
 }
 
 void SceneGame::LateUpdate(const float& deltaTime)
