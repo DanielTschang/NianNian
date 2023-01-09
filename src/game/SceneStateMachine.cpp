@@ -33,6 +33,10 @@ void SceneStateMachine::LateUpdate(const float& deltaTime)
     {
         curScene->LateUpdate(deltaTime);
     }
+    if(curScene->isClose)
+    {
+        this->scenes.clear();
+    }
 }
 
 void SceneStateMachine::Draw(Window& window)
@@ -92,8 +96,8 @@ void SceneStateMachine::switchTo(AllScenes::e_Scenes SceneName)
 }
 
 bool SceneStateMachine::isEmpty() {
-    if(this->curScene == nullptr) return false;
-    return true;
+    if(this->curScene == nullptr) return true;
+    return false;
 }
 
 

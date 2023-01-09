@@ -15,13 +15,14 @@ class SceneStateMachine;
 
 class Scene
 {
+public:
+    bool isClose;
 protected:
     Scene(Window &window, SceneStateMachine& sceneManager);
 
     Window &window;
     SceneStateMachine &sceneManager;
     Input input;
-    bool isClose;
 
     sf::Vector2i mousePosScreen;
     sf::Vector2i mousePosWindow;

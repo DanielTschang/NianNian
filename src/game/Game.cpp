@@ -1,7 +1,7 @@
 #include "Game.hpp"
 
 void Game::initWindow() {
-    this->window = new Window("Default Game Name");
+    this->window = new Window();
 }
 
 void Game::initVariables() {
@@ -9,9 +9,6 @@ void Game::initVariables() {
     this->textureAllocator = new ResourceAllocator<sf::Texture>();
 }
 
-void Game::initWindow(std::string WindowName) {
-    this->window = new Window(WindowName);
-}
 
 void Game::initState()
 {
@@ -35,7 +32,7 @@ void Game::initState()
 Game::Game()
 {
     this->initVariables();
-    this->initWindow("NianNianAdventure");
+    this->initWindow();
     this->CalculateDeltaTime();
     this->initState();
 }
@@ -98,7 +95,7 @@ void Game::run() {
         this->LateUpdate();
         this->Draw();
         this->CalculateDeltaTime();
-//        this->isClose();
+        this->isClose();
     }
 }
 

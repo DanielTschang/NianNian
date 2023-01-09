@@ -21,6 +21,10 @@ public:
     {
         return "./resources/";
     }
+    static const std::string GetResources()
+    {
+        return "./resources/";
+    }
     static const std::string GetFonts()
     {
         return "./Fonts/";

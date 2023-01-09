@@ -25,7 +25,6 @@ class Game
 {
 private:
     void initWindow();
-    void initWindow(std::string WindowName);
     void initState();
     void initVariables();
 

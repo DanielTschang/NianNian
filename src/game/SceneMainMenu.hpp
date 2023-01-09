@@ -22,6 +22,8 @@ enum e_buttons
 class SceneMainMenu : public Scene{
 private:
     sf::RectangleShape background;
+    sf::Texture backgroundTexture;
+    sf::Sprite backgroundSprite;
     sf::Font Font;
 
     std::map<e_buttons, Button*> buttonMap;
@@ -31,6 +33,8 @@ public:
     SceneMainMenu(WorkingDirectory& workingDir, Window& window, SceneStateMachine& sceneManager);
     ~SceneMainMenu();
     //init
+    void initVariables();
+    void initBackground();
     void initFonts();
     void initButtons();
 
