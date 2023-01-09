@@ -23,13 +23,13 @@ public:
     void Draw(Window& window);
 
     // Adds a scene to the state machine and returns the id of that scene.
-    void Add(Scene *scene);
+    void Add(Scene *scene, AllScenes::e_Scenes SceneName);
 
     // Transitions to scene with specified id.
-    void switchTo(AllScenes::e_Scenes id);
+    void switchTo(AllScenes::e_Scenes SceneName);
 
     // Removes scene from state machine.
-    void Remove(AllScenes::e_Scenes id);
+    void Remove(AllScenes::e_Scenes SceneName);
     bool isEmpty();
 
 private:

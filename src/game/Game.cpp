@@ -22,16 +22,14 @@ void Game::initState()
 
 
     //add all scenes to sceneManager
-    sceneManager->Add(splashScreen); // get the id of splash scene
-    sceneManager->Add(MainMenuScene);
-    sceneManager->Add(gameScene);
-
-
+    sceneManager->Add(splashScreen, AllScenes::Splash); // get the id of splash scene
+    sceneManager->Add(MainMenuScene, AllScenes::MainMenu);
+    sceneManager->Add(gameScene, AllScenes::GameSceneLevelOne);
 
     //we tell the splash screen which scene to switch after finished loading
-    splashScreen->setSwitchToScene(AllScenes::Splash);
+    splashScreen->setSwitchToScene(AllScenes::MainMenu);
     //switch to splash screen via sceneManager
-    this->sceneManager->switchTo(AllScenes::MainMenu);
+    this->sceneManager->switchTo(AllScenes::Splash);
 }
 
 Game::Game()

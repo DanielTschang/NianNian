@@ -2,7 +2,7 @@
 
 SceneSplashScreen::SceneSplashScreen(WorkingDirectory &workingDir, ResourceAllocator<sf::Texture> &textureAllocator,
                                      Window &window, SceneStateMachine &sceneManager):
-                                     Scene(window, sceneManager), workingDir(workingDir), switchToState(0), currentSeconds(0.f), showForSeconds(3.f), textureAllocator(textureAllocator)
+                                     Scene(window, sceneManager), workingDir(workingDir), switchToState(AllScenes::Empty), currentSeconds(0.f), showForSeconds(3.f), textureAllocator(textureAllocator)
 {}
 
 void SceneSplashScreen::onCreate() 
@@ -31,10 +31,10 @@ void SceneSplashScreen::onActivate()
 
 void SceneSplashScreen::onDestroy() { }
 
-void SceneSplashScreen::setSwitchToScene(unsigned int id)
+void SceneSplashScreen::setSwitchToScene(AllScenes::e_Scenes SceneName)
 {
     // Stores the id of the scene that we will transition to.
-    switchToState = id;
+    switchToState = SceneName;
 }
 
 void SceneSplashScreen::Update(const float& deltaTime)

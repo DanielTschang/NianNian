@@ -20,7 +20,7 @@ public:
     void onActivate() override;
     
     // Stores the id of the scene that we will transition to.
-    void setSwitchToScene(unsigned int id);
+    void setSwitchToScene(AllScenes::e_Scenes SceneName);
 
     void Update(const float& deltaTime) override;
     void Draw(Window& window) override;
@@ -39,7 +39,7 @@ private:
     float currentSeconds;
 
     // The state we want to transition to when this scenes time expires.
-    unsigned int switchToState;
+    AllScenes::e_Scenes switchToState;
 
     ResourceAllocator<sf::Texture>& textureAllocator;
 };

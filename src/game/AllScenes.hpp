@@ -11,6 +11,7 @@ namespace AllScenes
 {
     enum e_Scenes
     {
+        Empty,
         Splash,
         MainMenu,
         GameSceneLevelOne,
