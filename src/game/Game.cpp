@@ -15,22 +15,23 @@ void Game::initWindow(std::string WindowName) {
 
 void Game::initState()
 {
-    // This creates a pointer to a splash screen scene.
+    // This creates a pointer to a scenes.
     SceneSplashScreen *splashScreen = new SceneSplashScreen(workingDir, *this->textureAllocator, *this->window, *this->sceneManager);
-    unsigned int splashScreenID = sceneManager->Add(splashScreen); // get the id of splash scene
-
-    // This creates a pointer to a game screen scene.
-    SceneGame *gameScene = new SceneGame(workingDir, *textureAllocator, *this->window, *this->sceneManager);
-    unsigned int gameSceneID = sceneManager->Add(gameScene);
-
     SceneMainMenu *MainMenuScene = new SceneMainMenu(workingDir,  *this->window, *this->sceneManager);
-    unsigned int MainMenuSceneID = sceneManager->Add(MainMenuScene);
-    //we tell the splash screen which scene to switch after finished loading
-    splashScreen->setSwitchToScene(gameSceneID);
+    SceneGame *gameScene = new SceneGame(workingDir, *textureAllocator, *this->window, *this->sceneManager);
 
+
+    //add all scenes to sceneManager
+    sceneManager->Add(splashScreen); // get the id of splash scene
+    sceneManager->Add(MainMenuScene);
+    sceneManager->Add(gameScene);
+
+
+
+    //we tell the splash screen which scene to switch after finished loading
+    splashScreen->setSwitchToScene(AllScenes::Splash);
     //switch to splash screen via sceneManager
-//    this->sceneManager->switchTo(splashScreenID);
-    this->sceneManager->switchTo(MainMenuSceneID);
+    this->sceneManager->switchTo(AllScenes::MainMenu);
 }
 
 Game::Game()

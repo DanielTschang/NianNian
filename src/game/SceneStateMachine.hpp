@@ -8,6 +8,7 @@
 
 
 #include "Window.hpp"
+#include "AllScenes.hpp"
 
 class SceneStateMachine
 {
@@ -22,18 +23,18 @@ public:
     void Draw(Window& window);
 
     // Adds a scene to the state machine and returns the id of that scene.
-    unsigned int Add(Scene *scene);
+    void Add(Scene *scene);
 
     // Transitions to scene with specified id.
-    void switchTo(unsigned int id);
+    void switchTo(AllScenes::e_Scenes id);
 
     // Removes scene from state machine.
-    void Remove(unsigned int id);
+    void Remove(AllScenes::e_Scenes id);
     bool isEmpty();
 
 private:
     // Stores all the scenes associated with this state machine.
-    std::unordered_map<unsigned int, Scene*> scenes;
+    std::unordered_map<AllScenes::e_Scenes, Scene*> scenes;
 
     // Stores a reference to the current scene. Used when drawing/updating.
     Scene *curScene;

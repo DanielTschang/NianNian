@@ -44,21 +44,17 @@ void SceneStateMachine::Draw(Window& window)
 }
 
 
-unsigned int SceneStateMachine::Add(Scene *scene)
+void SceneStateMachine::Add(Scene *scene, AllScenes::e_Scenes SceneName)
 {
-    auto inserted = scenes.insert(std::make_pair(insertedSceneID, scene));
-    
-//     insertedSceneID++;
+    auto inserted = scenes.insert(std::make_pair(SceneName, scene));
 
     inserted.first->second->onCreate(); //inserted.first point to the scene that you just inseted, inserted.second is a boolean, if insert is successed, it will be true
-    
-    // return insertedSceneID - 1;
-    return insertedSceneID++;
+
 }
 
-void SceneStateMachine::Remove(unsigned int id)
+void SceneStateMachine::Remove(AllScenes::e_Scenes SceneName)
 {
-    auto it = scenes.find(id);
+    auto it = scenes.find(SceneName);
     if(it != scenes.end()) //not found
     {
         if(curScene == it->second)
@@ -77,9 +73,9 @@ void SceneStateMachine::Remove(unsigned int id)
     }
 }
 
-void SceneStateMachine::switchTo(unsigned int id)
+void SceneStateMachine::switchTo(AllScenes::e_Scenes SceneName)
 {
-    auto it = scenes.find(id);
+    auto it = scenes.find(SceneName);
     if(it != scenes.end())
     {
         if(curScene)

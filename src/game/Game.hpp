@@ -18,6 +18,7 @@
 #include "SceneSplashScreen.hpp"
 #include "SceneMainMenu.hpp"
 #include "SceneGame.hpp"
+#include "AllScenes.hpp"
 
 
 class Game
