@@ -12,13 +12,20 @@
 #include "map"
 #include <iostream>
 
+enum e_buttons
+{
+    gameStart,
+    Setting,
+    gameEnd,
+};
 
 class SceneMainMenu : public Scene{
 private:
     sf::RectangleShape background;
     sf::Font Font;
 
-    std::map<std::string, Button*> buttonMap;
+    std::map<e_buttons, Button*> buttonMap;
+    WorkingDirectory& workingDir;
 public:
     SceneMainMenu();
     SceneMainMenu(WorkingDirectory& workingDir, Window& window, SceneStateMachine& sceneManager);
@@ -35,10 +42,12 @@ public:
     void Update(const float &deltaTime) override;
     void Draw(Window& window) override;
     void closeScene() override;
-    void drawButtons();
-    void updateButtons();
+
+    
 private:
-    WorkingDirectory& workingDir;
+    void updateButtonsState();
+    void triggerButtons();
+    void drawButtons();
 };
 
 #endif //NIANNIAN_SCENEMAINMENU_HPP

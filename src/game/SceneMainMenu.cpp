@@ -33,21 +33,29 @@ void SceneMainMenu::processInput()
     this->input.Update();
 }
 
-void SceneMainMenu::updateButtons() {
+void SceneMainMenu::updateButtonsState() {
     for(auto it = this->buttonMap.begin(); it!=buttonMap.end(); it++)
     {
         it->second->Update(this->mousePosView);
     }
 }
 
+void SceneMainMenu::triggerButtons()
+{
+    if(this->buttonMap[e_buttons::gameStart]->isPressed())
+        this->sceneManager.switchTo(AllScenes::GameSceneLevelOne);
+    if(this->buttonMap[e_buttons::gameEnd]->isPressed())
+        this->closeScene();
+    if(this->buttonMap[e_buttons::Setting]->isPressed())
+        std::cout << "trigger settings button" << std::endl;
+}
+
 
 void SceneMainMenu::Update(const float &deltaTime)
 {
     this->updateMousePosition(window);
-    this->updateButtons();
-
-    if(this->buttonMap["End_Game_button"]->isPressed())
-        this->closeScene();
+    this->updateButtonsState();
+    this->triggerButtons();
 }
 
 void SceneMainMenu::drawButtons() {
@@ -74,15 +82,15 @@ void SceneMainMenu::closeScene() {
 void SceneMainMenu::initButtons() {
     this->initFonts();
 
-    buttonMap["new_game_button"] = new Button(100.f,100.f,150.f,50.f, "New Game", &this->Font,
+    buttonMap[e_buttons::gameStart] = new Button(100.f,100.f,150.f,50.f, "New Game", &this->Font,
                             sf::Color(70,70,70,200), sf::Color(150,150,150,255),
                             sf::Color(20,20,20,200)
                 );
-    buttonMap["settings_button"] = new Button(100.f,180.f,150.f,50.f, "Settings", &this->Font,
+    buttonMap[e_buttons::Setting] = new Button(100.f,180.f,150.f,50.f, "Settings", &this->Font,
                                               sf::Color(70,70,70,200), sf::Color(150,150,150,255),
                                               sf::Color(20,20,20,200)
     );
-    buttonMap["End_Game_button"] = new Button(100.f,250.f,150.f,50.f, "End Game", &this->Font,
+    buttonMap[e_buttons::gameEnd] = new Button(100.f,250.f,150.f,50.f, "End Game", &this->Font,
                                        sf::Color(70,70,70,200), sf::Color(150,150,150,255),
                                        sf::Color(20,20,20,200)
     );
