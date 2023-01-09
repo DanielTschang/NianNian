@@ -29,7 +29,7 @@ void Game::initState()
     //we tell the splash screen which scene to switch after finished loading
     splashScreen->setSwitchToScene(AllScenes::MainMenu);
     //switch to splash screen via sceneManager
-    this->sceneManager->switchTo(AllScenes::Splash);
+    this->sceneManager->switchTo(AllScenes::MainMenu);
 }
 
 Game::Game()
