@@ -1,7 +1,3 @@
-//
-// Created by danchang11 on 2023/1/9.
-//
-
 #ifndef NIANNIAN_ALLSCENES_HPP
 #define NIANNIAN_ALLSCENES_HPP
 
