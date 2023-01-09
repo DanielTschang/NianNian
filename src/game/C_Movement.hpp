@@ -14,7 +14,7 @@ class C_Movement : public Component
     C_Movement(Object * owner);
     void SetInput(Input* input);
     void SetMovementSpeed(int moveSpeed);
-    void Update(float deltaTime) override;
+    void Update(const float& deltaTime) override;
     void Awake();
     
   private:

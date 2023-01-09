@@ -21,7 +21,7 @@ void C_Animation::Awake()
     sprite = owner->GetComponent<C_Sprite>();
 }
 
-void C_Animation::Update(float deltaTime)
+void C_Animation::Update(const float& deltaTime)
 {
     if(currentAnimation.first != AnimationState::None)
     {

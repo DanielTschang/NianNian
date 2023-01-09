@@ -18,7 +18,7 @@ public:
     // We override the draw method so we can draw our sprite.
     void Draw(Window& window) override;
 
-    void LateUpdate(float deltatime) override;
+    void LateUpdate(const float& deltatime) override;
     void SetTextureRect(int x, int y, int width, int height);
     void SetTextureRect(const sf::IntRect& rect);
     void SetScale(float x, float y);

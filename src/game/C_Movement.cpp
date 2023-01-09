@@ -14,7 +14,7 @@ void C_Movement::SetMovementSpeed(int moveSpeed)
   this->moveSpeed = moveSpeed;
 }
 
-void C_Movement::Update(float deltaTime)
+void C_Movement::Update(const float& deltaTime)
 {
     if(input == nullptr) return;
 

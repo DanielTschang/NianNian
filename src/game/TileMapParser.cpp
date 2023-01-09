@@ -63,7 +63,7 @@ std::vector<std::shared_ptr<Object>> TileMapParser::Parse(const std::string& fil
 
             float x = tile->x * tileSizeX * tileScale + offset.x;
             float y = tile->y * tileSizeY * tileScale + offset.y;
-            tileObject->transform->SetPosition(x, y);
+            tileObject->position->SetPosition(600, y);
 
             tileObjects.emplace_back(tileObject);
         }
@@ -186,4 +186,3 @@ std::pair<std::string, std::shared_ptr<Layer>> TileMapParser::BuildLayer(xml_nod
     const std::string layerName = layerNode->first_attribute("name")->value();
     return std::make_pair(layerName, layer);
 }
-

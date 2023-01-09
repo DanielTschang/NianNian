@@ -1,7 +1,3 @@
-//
-// Created by danchang11 on 2022/12/15.
-//
-
 #include "ObjectCollection.hpp"
 
 void ObjectCollection::Update(float deltaTime)
@@ -28,6 +24,11 @@ void ObjectCollection::Draw(Window& window)
     }
 }
 
+void ObjectCollection::Add(std::vector<std::shared_ptr<Object>>& otherObjects)
+{
+    newObjects.insert(newObjects.end(), otherObjects.begin(), otherObjects.end());
+}
+
 void ObjectCollection::Add(std::shared_ptr<Object> object)
 {
     newObjects.push_back(object);
@@ -47,7 +48,8 @@ void ObjectCollection::ProcessNewObjects()
             o->Start();
         }
 
-        objects.assign(newObjects.begin(), newObjects.end());
+        objects.insert(objects.end(), newObjects.begin(), newObjects.end());
+
         newObjects.clear();
     }
 }
