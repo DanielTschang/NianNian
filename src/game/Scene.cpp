@@ -12,8 +12,6 @@ void Scene::updateMousePosition(Window &window) {
 
 void Scene::LateUpdate(const float &deltaTime) {
     if(this->isClose)
-    {
         window.closeWindow();
-    }
 }
 
