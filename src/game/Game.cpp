@@ -26,7 +26,7 @@ void Game::initState()
     //we tell the splash screen which scene to switch after finished loading
     splashScreen->setSwitchToScene(AllScenes::MainMenu);
     //switch to splash screen via sceneManager
-    this->sceneManager->switchTo(AllScenes::MainMenu);
+    this->sceneManager->switchTo(AllScenes::Splash);
 }
 
 Game::Game()
@@ -39,6 +39,8 @@ Game::Game()
 
 Game::~Game() {
     delete this->window;
+    delete this->sceneManager;
+    delete this->textureAllocator;
 }
 
 void Game::Update()

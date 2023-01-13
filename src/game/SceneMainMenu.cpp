@@ -90,14 +90,13 @@ void SceneMainMenu::initButtons() {
     );
 
 }
+
 void SceneMainMenu::initFonts() {
     if(!this->Font.loadFromFile(WorkingDirectory::GetFonts() + "JosefinSans-Light.ttf"))
     {
         throw "ERROR::MAINMENU:: COULD NOT LOAD FONT!";
     }
 }
-
-
 
 void SceneMainMenu::initBackground()
 {

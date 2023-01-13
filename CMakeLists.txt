@@ -19,9 +19,10 @@ file(GLOB HEADER_FILES src/game/*.hpp)
 add_executable(NianNian 
     src/Main.cpp
     ${SRC_FILES}
-    ${HEADER_FILES} src/game/ObjectCollection.cpp src/game/Animation.cpp src/game/Animation.hpp src/game/C_Animation.cpp src/game/C_Animation.hpp src/game/TileMap.cpp src/game/TileMap.hpp src/game/TileMapParser.cpp src/game/TileMapParser.hpp src/game/utils.hpp)
+    ${HEADER_FILES} src/game/ObjectCollection.cpp src/game/Animation.cpp src/game/Animation.hpp src/game/C_Animation.cpp src/game/C_Animation.hpp src/game/TileMap.cpp src/game/TileMap.hpp src/game/TileMapParser.cpp src/game/TileMapParser.hpp src/game/utils.hpp src/game/Button.cpp src/game/Button.hpp src/game/Scene.cpp src/game/AllScenes.hpp src/game/Entity/Entity.cpp src/game/Entity/Entity.hpp)
 FILE(COPY resources/ DESTINATION "${CMAKE_BINARY_DIR}/resources")
 FILE(COPY Config/ DESTINATION "${CMAKE_BINARY_DIR}/Config")
+FILE(COPY Fonts/ DESTINATION "${CMAKE_BINARY_DIR}/Fonts")
 # Set include directory search paths
 
 target_include_directories(NianNian PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)

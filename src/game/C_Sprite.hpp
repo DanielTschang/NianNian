@@ -25,7 +25,7 @@ public:
 
 private:
         ResourceAllocator<sf::Texture>* allocator;
-        sf::Texture texture;
+//        sf::Texture* texture;
         sf::Sprite sprite;
         int currentTextureID; // We’ll now keep track of our currently set texture.
 };
