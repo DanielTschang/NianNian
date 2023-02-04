@@ -1,35 +1,57 @@
-//
-// Created by danchang11 on 2022/12/12.
-//
-
 #ifndef NIANNIAN_SCENEMAINMENU_HPP
 #define NIANNIAN_SCENEMAINMENU_HPP
 
 #include <SFML/Graphics.hpp>
+#include "Scene.hpp"
 #include "WorkingDirectory.hpp"
 #include "SceneStateMachine.hpp"
 #include "Input.hpp"
 #include "Window.hpp"
+#include "Button.hpp"
+#include "Button.hpp"
+#include "map"
+#include <iostream>
 
-class WorkingDirectory;
+enum e_buttons
+{
+    gameStart,
+    Setting,
+    gameEnd,
+};
 
 class SceneMainMenu : public Scene{
+private:
+    sf::RectangleShape background;
+    sf::Texture backgroundTexture;
+    sf::Sprite backgroundSprite;
+    sf::Font Font;
+
+    std::map<e_buttons, Button*> buttonMap;
+    WorkingDirectory& workingDir;
 public:
     SceneMainMenu();
-    SceneMainMenu(WorkingDirectory& workingDir, SceneStateMachine& sceneManager, Window& window);
+    SceneMainMenu(WorkingDirectory& workingDir, Window& window, SceneStateMachine& sceneManager);
+    ~SceneMainMenu();
+    //init
+    void initVariables();
+    void initBackground();
+    void initFonts();
+    void initButtons();
+
+    //functions
     void onCreate() override;
     void onDestroy() override;
 
     void processInput() override;
-    void Update(float deltaTime) override;
+    void Update(const float &deltaTime) override;
     void Draw(Window& window) override;
-    void LateUpdate(float deltaTime) override;
+    void closeScene() override;
+
+    
 private:
-    WorkingDirectory& workingDir;
-    Window& window;
-    Input input;
-    sf::RectangleShape background;
-    SceneStateMachine sceneManager;
+    void updateButtonsState();
+    void triggerButtons();
+    void drawButtons();
 };
 
 #endif //NIANNIAN_SCENEMAINMENU_HPP

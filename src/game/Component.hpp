@@ -14,8 +14,8 @@ public:
     virtual void Awake() {};
     virtual void Start() {};
     
-    virtual void Update(float deltaTime) {};
-    virtual void LateUpdate(float deltaTime) {};
+    virtual void Update(const float& deltaTime) {};
+    virtual void LateUpdate(const float& deltaTime) {};
     virtual void Draw(Window& window) {};
     
 protected:

@@ -1,5 +1,5 @@
 #include "C_Movement.hpp"
-#include "Object.hpp"
+
 
 C_Movement::C_Movement(Object* owner): 
     Component(owner), moveSpeed(200) {}
@@ -14,12 +14,9 @@ void C_Movement::SetMovementSpeed(int moveSpeed)
   this->moveSpeed = moveSpeed;
 }
 
-void C_Movement::Update(float deltaTime)
+void C_Movement::Update(const float& deltaTime)
 {
     if(input == nullptr) return;
-
-
-
 
     int xMove = 0;
     if(input->IsKeyPressed(Input::KEY::LEFT))

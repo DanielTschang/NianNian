@@ -7,21 +7,26 @@
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Network.hpp>
+#include "Scene.hpp"
+
 #include "WorkingDirectory.hpp"
 #include "Window.hpp"
 #include "Input.hpp"
+
 
 #include "SceneStateMachine.hpp"
 #include "SceneSplashScreen.hpp"
 #include "SceneMainMenu.hpp"
 #include "SceneGame.hpp"
+#include "AllScenes.hpp"
 
 
 class Game
 {
 private:
     void initWindow();
-    void initWindow(std::string WindowName);
+    void initState();
+    void initVariables();
 
 public:
     //Constructor / Destructor
@@ -38,6 +43,7 @@ public:
     void updateEvents();
 
     bool IsRunning() const;
+    void isClose();
     
 private:
     Window* window;
@@ -46,8 +52,8 @@ private:
     sf::Clock deltaTimeClock;
     float deltaTime;
 
-    SceneStateMachine sceneManager;
-    ResourceAllocator<sf::Texture> textureAllocator;
+    SceneStateMachine* sceneManager;
+    ResourceAllocator<sf::Texture>* textureAllocator;
 
 };
 

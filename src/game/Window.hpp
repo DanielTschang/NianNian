@@ -8,8 +8,7 @@ class Window
 {
 public:
     Window();
-    Window(const std::string& windowName);
-    
+    void initVariables();
     void Update();
     
     void BeginDraw();
@@ -20,9 +19,25 @@ public:
     sf::Vector2u getSize() const;
     
     bool IsOpen() const;
+    void closeWindow();
     
 private:
     sf::RenderWindow window;
+
+    //settings variables
+    std::string windowTitle;
+    std::vector<sf::VideoMode> videoModes;
+    sf::ContextSettings windowSettings;
+    bool fullScreen;
+    bool verticalSyncEnabled;
+    unsigned int antialiasingLevel;
+    unsigned int framerateLimit;
+    sf::VideoMode windowBounds;
+
+public:
+    const sf::RenderWindow &getWindow() const;
+
+    void setWindow(const sf::RenderWindow &window);
 };
 
 

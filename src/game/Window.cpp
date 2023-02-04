@@ -3,32 +3,42 @@
 #include <sstream>
 #include <iostream>
 
-Window::Window(const std::string& windowName)
+Window::Window()
+{
+    this->initVariables();
+    //create Window with configs
+    if(this->fullScreen)
+        this->window.create(windowBounds, windowTitle,sf::Style::Fullscreen, windowSettings);
+    else
+        this->window.create(windowBounds, windowTitle,sf::Style::Titlebar | sf::Style::Close, windowSettings);
+    this->window.setVerticalSyncEnabled(verticalSyncEnabled);
+    this->window.setFramerateLimit(framerateLimit);
+}
+
+void Window::initVariables()
 {
     //load the config file
     std::ifstream ifs(WorkingDirectory::GetWindowConfig() + "Window.ini");
 
     //init the variables
-    std::string windowTitle = windowName;
-    sf::VideoMode windowBounds(800, 600);
-    unsigned framerateLimit = 120;
-    bool verticalSyncEnabled = true;
+    this->windowTitle = "default window name";
+    this->videoModes = sf::VideoMode::getFullscreenModes();
+    this->windowBounds = sf::VideoMode::getDesktopMode();
+    this->framerateLimit = 120;
+    this->verticalSyncEnabled = true;
+    this->fullScreen = false;
+    this->antialiasingLevel = 0;
 
-
-    //if config file is loaded then change the variables
     if(ifs.is_open())
     {
-        std::getline(ifs, windowTitle);
-        ifs >> windowBounds.width >> windowBounds.height;
-        ifs >> framerateLimit;
-        ifs >> verticalSyncEnabled;
+        std::getline(ifs, this->windowTitle);
+        ifs >> this->windowBounds.width >> this->windowBounds.height;
+        ifs >> this->fullScreen;
+        ifs >> this->framerateLimit;
+        ifs >> this->verticalSyncEnabled;
+        ifs >> this->antialiasingLevel;
     }
-
     ifs.close();
-
-    this->window.create(windowBounds, windowTitle,sf::Style::Titlebar);
-    this->window.setVerticalSyncEnabled(verticalSyncEnabled);
-    this->window.setFramerateLimit(framerateLimit);
 }
 
 void Window::Update()
@@ -73,4 +83,12 @@ sf::Vector2u Window::getCentre() const
 
 sf::Vector2u Window::getSize() const {
     return this->window.getSize();
+}
+
+void Window::closeWindow() {
+    this->window.close();
+}
+
+const sf::RenderWindow &Window::getWindow() const {
+    return window;
 }

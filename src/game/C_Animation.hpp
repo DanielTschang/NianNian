@@ -23,7 +23,7 @@ public:
 
     void Awake() override;
 
-    void Update(float deltaTime) override;
+    void Update(const float& deltaTime) override;
 
     // Add animation to object. We need its state as well
     // so that we can switch to it.

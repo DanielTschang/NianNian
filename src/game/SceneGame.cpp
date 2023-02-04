@@ -1,6 +1,13 @@
 #include "SceneGame.hpp"
 
-SceneGame::SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator) : workingDir(workingDir), textureAllocator(textureAllocator) { }
+SceneGame::SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator,
+                     Window& window, SceneStateMachine& sceneManager)
+                     : Scene(window, sceneManager), workingDir(workingDir), textureAllocator(textureAllocator), mapParser(textureAllocator)
+{
+    this->isClose = false;
+}
+
+
 void SceneGame::onCreate()
 {
     std::shared_ptr<Object> player = std::make_shared<Object>();
@@ -12,7 +19,7 @@ void SceneGame::onCreate()
     //updating the sprite.
 
     auto movement = player->AddComponent<C_Movement>();
-    movement->SetInput(&input);
+    movement->SetInput(&this->input);
 
     // Add our new animation component:
     auto animation = player->AddComponent<C_Animation>();
@@ -52,6 +59,12 @@ void SceneGame::onCreate()
     animation->AddAnimation(AnimationState::Walk, walkAnimation);
 
     objects.Add(player);
+
+    sf::Vector2i mapOffset(-100, 128);
+    std::vector<std::shared_ptr<Object>> levelTiles
+            = mapParser.Parse(workingDir.Get() + "Test Map 1.tmx", mapOffset);
+
+    objects.Add(levelTiles);
 }
 
 void SceneGame::onDestroy()
@@ -64,7 +77,7 @@ void SceneGame::processInput()
     input.Update();
 }
 
-void SceneGame::Update(float deltaTime)
+void SceneGame::Update(const float& deltaTime)
 {
     objects.ProcessRemovals();
     objects.ProcessNewObjects();
@@ -73,10 +86,17 @@ void SceneGame::Update(float deltaTime)
 
 void SceneGame::Draw(Window& window)
 {
-    objects.Draw(window);
+    this->objects.Draw(window);
 }
 
-void SceneGame::LateUpdate(float deltaTime)
+void SceneGame::LateUpdate(const float& deltaTime)
 {
      objects.LateUpdate(deltaTime);
+}
+
+void SceneGame::closeScene() {
+    if(this->input.IsKeyPressed(Input::KEY::ESC))
+    {
+        this->isClose = true;
+    }
 }

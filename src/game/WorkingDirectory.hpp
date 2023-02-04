@@ -21,10 +21,19 @@ public:
     {
         return "./resources/";
     }
+    static const std::string GetResources()
+    {
+        return "./resources/";
+    }
+    static const std::string GetFonts()
+    {
+        return "./Fonts/";
+    }
     
 private:
     std::string path;
     std::string configPath;
+    std::string fontPath;
 };
 
 #endif

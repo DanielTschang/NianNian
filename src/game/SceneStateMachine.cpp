@@ -2,6 +2,15 @@
 
 SceneStateMachine::SceneStateMachine() : scenes(0), curScene(0) { }
 
+SceneStateMachine::~SceneStateMachine() {
+
+    for (auto it = this->scenes.begin(); it != this->scenes.end(); it++)
+    {
+        delete it->second;
+    }
+    scenes.clear();
+}
+
 void SceneStateMachine::processInput()
 {
     if(curScene)
@@ -10,7 +19,7 @@ void SceneStateMachine::processInput()
     }
 }
 
-void SceneStateMachine::Update(float deltaTime)
+void SceneStateMachine::Update(const float& deltaTime)
 {
     if(curScene)    
     {
@@ -18,11 +27,15 @@ void SceneStateMachine::Update(float deltaTime)
     }
 }
 
-void SceneStateMachine::LateUpdate(float deltaTime)
+void SceneStateMachine::LateUpdate(const float& deltaTime)
 {
     if(curScene)
     {
         curScene->LateUpdate(deltaTime);
+    }
+    if(curScene->isClose)
+    {
+        this->scenes.clear();
     }
 }
 
@@ -35,21 +48,17 @@ void SceneStateMachine::Draw(Window& window)
 }
 
 
-unsigned int SceneStateMachine::Add(std::shared_ptr<Scene> scene)
+void SceneStateMachine::Add(Scene *scene, AllScenes::e_Scenes SceneName)
 {
-    auto inserted = scenes.insert(std::make_pair(insertedSceneID, scene));
-    
-    // insertedSceneID++;
+    auto inserted = scenes.insert(std::make_pair(SceneName, scene));
 
     inserted.first->second->onCreate(); //inserted.first point to the scene that you just inseted, inserted.second is a boolean, if insert is successed, it will be true
-    
-    // return insertedSceneID - 1;
-    return insertedSceneID++;
+
 }
 
-void SceneStateMachine::Remove(unsigned int id)
+void SceneStateMachine::Remove(AllScenes::e_Scenes SceneName)
 {
-    auto it = scenes.find(id);
+    auto it = scenes.find(SceneName);
     if(it != scenes.end()) //not found
     {
         if(curScene == it->second)
@@ -62,15 +71,15 @@ void SceneStateMachine::Remove(unsigned int id)
         
         // We make sure to call the OnDestroy method 
         // of the scene we are removing.
-        it->second->onDestroy(); 
+        it->second->onDestroy();
         
         scenes.erase(it);
     }
 }
 
-void SceneStateMachine::switchTo(unsigned int id)
+void SceneStateMachine::switchTo(AllScenes::e_Scenes SceneName)
 {
-    auto it = scenes.find(id);
+    auto it = scenes.find(SceneName);
     if(it != scenes.end())
     {
         if(curScene)
@@ -85,3 +94,10 @@ void SceneStateMachine::switchTo(unsigned int id)
         curScene->onActivate();
     }
 }
+
+bool SceneStateMachine::isEmpty() {
+    if(this->curScene == nullptr) return true;
+    return false;
+}
+
+

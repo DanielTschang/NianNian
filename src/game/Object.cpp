@@ -21,7 +21,7 @@ void Object::Start()
     }
 }
 
-void Object::Update(float timeDelta)
+void Object::Update(const float& timeDelta)
 {
     for(int i = components.size() - 1; i >= 0; i--)
     {
@@ -29,7 +29,7 @@ void Object::Update(float timeDelta)
     }
 }
 
-void Object::LateUpdate(float timeDelta)
+void Object::LateUpdate(const float& timeDelta)
 {
     for(int i = components.size() - 1; i >= 0; i--)
     {
@@ -53,4 +53,8 @@ void Object::QueueForRemoval()
 bool Object::IsQueuedForRemoval()
 {
     return  queuedForRemoval;
+}
+
+Object::~Object() {
+
 }

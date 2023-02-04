@@ -12,7 +12,7 @@ void C_Sprite::SetTextureAllocator(ResourceAllocator<sf::Texture>* allocator)
 }
 void C_Sprite::Load(int id)
 {
-    // Check its not already our current texture.
+    // Check it's not already our current texture.
     if(id >= 0 && id != currentTextureID)
     {
         currentTextureID = id;
@@ -40,7 +40,7 @@ void C_Sprite::Draw(Window& window)
     window.Draw(sprite);
 }
 
-void C_Sprite::LateUpdate(float deltatime)
+void C_Sprite::LateUpdate(const float& deltatime)
 {
     sprite.setPosition(owner->position->GetPosition());
 }

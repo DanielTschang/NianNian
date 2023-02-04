@@ -1,9 +1,9 @@
 #include "SceneSplashScreen.hpp"
 
-SceneSplashScreen::SceneSplashScreen(WorkingDirectory& workingDir, SceneStateMachine& sceneManager, Window& window, ResourceAllocator<sf::Texture>& textureAllocator) : sceneManager(sceneManager), workingDir(workingDir), window(window), switchToState(0), currentSeconds(0.f), showForSeconds(3.f), textureAllocator(textureAllocator)
-{
-
-}
+SceneSplashScreen::SceneSplashScreen(WorkingDirectory &workingDir, ResourceAllocator<sf::Texture> &textureAllocator,
+                                     Window &window, SceneStateMachine &sceneManager):
+                                     Scene(window, sceneManager), workingDir(workingDir), switchToState(AllScenes::Empty), currentSeconds(0.f), showForSeconds(3.f), textureAllocator(textureAllocator)
+{}
 
 void SceneSplashScreen::onCreate() 
 {
@@ -31,20 +31,20 @@ void SceneSplashScreen::onActivate()
 
 void SceneSplashScreen::onDestroy() { }
 
-void SceneSplashScreen::setSwitchToScene(unsigned int id)
+void SceneSplashScreen::setSwitchToScene(AllScenes::e_Scenes SceneName)
 {
     // Stores the id of the scene that we will transition to.
-    switchToState = id;
+    switchToState = SceneName;
 }
 
-void SceneSplashScreen::Update(float deltaTime)
+void SceneSplashScreen::Update(const float& deltaTime)
 {
     currentSeconds += deltaTime;
     
     if(currentSeconds >= showForSeconds) 
     {
   	// Switch states.
-        sceneManager.switchTo(switchToState);
+        this->sceneManager.switchTo(switchToState);
     }
 }
 
@@ -52,3 +52,8 @@ void SceneSplashScreen::Draw(Window& window)
 {
     window.Draw(splashSprite);
 }
+
+void SceneSplashScreen::closeScene() {
+
+}
+

@@ -1,68 +1,71 @@
 #include "Game.hpp"
 
 void Game::initWindow() {
-    this->window = new Window("Default Game Name");
+    this->window = new Window();
 }
 
-void Game::initWindow(std::string WindowName) {
-    this->window = new Window(WindowName);
+void Game::initVariables() {
+    this->sceneManager = new SceneStateMachine();
+    this->textureAllocator = new ResourceAllocator<sf::Texture>();
+}
+
+
+void Game::initState()
+{
+    // This creates a pointer to a scenes.
+    SceneSplashScreen *splashScreen = new SceneSplashScreen(workingDir, *this->textureAllocator, *this->window, *this->sceneManager);
+    SceneMainMenu *MainMenuScene = new SceneMainMenu(workingDir,  *this->window, *this->sceneManager);
+    SceneGame *gameScene = new SceneGame(workingDir, *textureAllocator, *this->window, *this->sceneManager);
+
+
+    //add all scenes to sceneManager
+    sceneManager->Add(splashScreen, AllScenes::Splash); // get the id of splash scene
+    sceneManager->Add(MainMenuScene, AllScenes::MainMenu);
+    sceneManager->Add(gameScene, AllScenes::GameSceneLevelOne);
+
+    //we tell the splash screen which scene to switch after finished loading
+    splashScreen->setSwitchToScene(AllScenes::MainMenu);
+    //switch to splash screen via sceneManager
+    this->sceneManager->switchTo(AllScenes::Splash);
 }
 
 Game::Game()
 {
-    this->initWindow("NianNianAdventure");
-
-
-
-    // This creates a smart pointer to a splash screen scene.
-//    std::shared_ptr<SceneSplashScreen> splashScreen =
-//        std::make_shared<SceneSplashScreen>(workingDir, sceneManager, window, textureAllocator);
-//
-//    // This creates a smart pointer to a game screen scene.
-//    std::shared_ptr<SceneGame> gameScene = std::make_shared<SceneGame>(workingDir, textureAllocator);
-//    std::shared_ptr<SceneMainMenu> menuScene =
-//            std::make_shared<SceneMainMenu>(workingDir, sceneManager, window);
-//
-//    unsigned int splashScreenID = sceneManager.Add(splashScreen);
-//    unsigned int gameSceneID = sceneManager.Add(gameScene);
-//    unsigned int menuSceneID= sceneManager.Add(menuScene);
-//
-//    // Now that we have our game scene id, we can set the splash screen to transition to the game scene.
-//    splashScreen->setSwitchToScene(gameSceneID);
-//
-//    // We want the game to start at the splash screen
-//    sceneManager.switchTo(splashScreenID);
-//
-//    deltaTime = clock.restart().asSeconds();
+    this->initVariables();
+    this->initWindow();
+    this->CalculateDeltaTime();
+    this->initState();
 }
 
 Game::~Game() {
     delete this->window;
+    delete this->sceneManager;
+    delete this->textureAllocator;
 }
 
 void Game::Update()
 {
     window->Update();
-    sceneManager.Update(deltaTime);
+    sceneManager->Update(deltaTime);
 }
 
 void Game::LateUpdate()
 {
-    sceneManager.LateUpdate(deltaTime);
+    sceneManager->LateUpdate(deltaTime);
 }
 
 void Game::Draw()
 {
     window->BeginDraw(); //sf::window.clear()
-    
-    sceneManager.Draw(*window); //scene draw
+
+    sceneManager->Draw(*window); //scene draw
 
     window->EndDraw(); //sf::window.display
 }
 
 void Game::getInput()
 {
-    sceneManager.processInput();
+    sceneManager->processInput();
 }
 
 /*
@@ -78,6 +81,14 @@ bool Game::IsRunning() const
     return window->IsOpen();
 }
 
+void Game::isClose()
+{
+    if(sceneManager->isEmpty())
+    {
+        window->closeWindow();
+    }
+}
+
 void Game::run() {
     while (this->IsRunning())
     {
@@ -86,12 +97,15 @@ void Game::run() {
         this->LateUpdate();
         this->Draw();
         this->CalculateDeltaTime();
+        this->isClose();
     }
 }
 
 void Game::updateEvents() {
 
 }
+
+
 
 
 
