@@ -19,9 +19,14 @@ void Input::Update()
     thisFrameKeys.SetBit((int)KEY::DOWN,
                         (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) || 
 		                (sf::Keyboard::isKeyPressed(sf::Keyboard::S)));
-  
-    thisFrameKeys.SetBit((int)KEY::ESC),
-                        sf::Keyboard::isKeyPressed(sf::Keyboard::Escape);
+
+    thisFrameKeys.SetBit((int)KEY::ESC,
+                         (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)));
+
+    thisFrameKeys.SetBit((int)KEY::SHIFT,
+                         (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)));
+
+
 }
 
 bool Input::IsKeyPressed(KEY keycode)

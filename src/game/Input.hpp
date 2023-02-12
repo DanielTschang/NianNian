@@ -14,7 +14,8 @@ class Input
             RIGHT = 2,
             UP = 3,
             DOWN = 4,
-            ESC = 5
+            ESC = 5,
+            SHIFT = 6
         };
 
 
