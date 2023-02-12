@@ -2,6 +2,7 @@
 #define C_Position_hpp
 
 #include "Component.hpp"
+#include <iostream>
 
 class Object;
 
