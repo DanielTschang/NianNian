@@ -12,6 +12,7 @@
 #include "ObjectCollection.hpp"
 #include "C_Animation.hpp"
 #include "TileMapParser.hpp"
+#include "C_DashMovement.hpp"
 
 
 class SceneGame : public Scene

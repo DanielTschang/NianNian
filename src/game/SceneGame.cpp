@@ -21,6 +21,11 @@ void SceneGame::onCreate()
     auto movement = player->AddComponent<C_Movement>();
     movement->SetInput(&this->input);
 
+    auto movementDash = player->AddComponent<C_DashMovement>();
+    movementDash->SetInput(&this->input);
+    movementDash->setCooldown(0.5);
+    movementDash->setDashDistant(50.f);
+
     // Add our new animation component:
     auto animation = player->AddComponent<C_Animation>();
 
@@ -60,11 +65,11 @@ void SceneGame::onCreate()
 
     objects.Add(player);
 
-    sf::Vector2i mapOffset(-100, 128);
-    std::vector<std::shared_ptr<Object>> levelTiles
-            = mapParser.Parse(workingDir.Get() + "Test Map 1.tmx", mapOffset);
-
-    objects.Add(levelTiles);
+//    sf::Vector2i mapOffset(0, 0);
+//    std::vector<std::shared_ptr<Object>> levelTiles
+//            = mapParser.Parse(workingDir.Get() + "Test Map 1.tmx", mapOffset);
+//
+//    objects.Add(levelTiles);
 }
 
 void SceneGame::onDestroy()
