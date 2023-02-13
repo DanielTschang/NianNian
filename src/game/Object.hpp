@@ -13,21 +13,18 @@ public:
     std::shared_ptr<C_Position> position;
 private:
     std::vector<std::shared_ptr<Component>> components;
-    bool queuedForRemoval;
-
 public:
     Object();
-
     ~Object();
 
-    void Awake(); // Called when object created. Use to ensure required components are present.
-    void Start(); // Called after Awake method. Use to initialise variables.
+    virtual void Awake();
+    virtual void Start();
 
-    void Update(const float &deltaTime);
+    virtual void Update(const float &deltaTime);
 
-    void LateUpdate(const float &deltaTime);
+    virtual void LateUpdate(const float &deltaTime);
 
-    void Draw(Window &window);
+    virtual void Draw(Window &window);
 
     bool IsQueuedForRemoval();
 

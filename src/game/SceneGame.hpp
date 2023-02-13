@@ -13,13 +13,14 @@
 #include "C_Animation.hpp"
 #include "TileMapParser.hpp"
 #include "C_DashMovement.hpp"
+#include "Player.hpp"
 
 
 class SceneGame : public Scene
 {
 public:
     SceneGame(WorkingDirectory &workingDir, ResourceAllocator<sf::Texture> &textureAllocator, Window &window,
-              SceneStateMachine &sceneManager);
+              SceneStateMachine &sceneManager, Input &input);
 
     ~SceneGame();
     void onCreate() override;

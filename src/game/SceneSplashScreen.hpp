@@ -12,7 +12,7 @@
 class SceneSplashScreen : public Scene
 {
 public:
-    SceneSplashScreen(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator, Window& window, SceneStateMachine& sceneManager);
+    SceneSplashScreen(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator, Window& window, SceneStateMachine& sceneManager, Input &input);
 
     void onCreate() override;
     void onDestroy() override;

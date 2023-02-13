@@ -1,8 +1,8 @@
 #include "SceneSplashScreen.hpp"
 
 SceneSplashScreen::SceneSplashScreen(WorkingDirectory &workingDir, ResourceAllocator<sf::Texture> &textureAllocator,
-                                     Window &window, SceneStateMachine &sceneManager):
-                                     Scene(window, sceneManager), workingDir(workingDir), switchToState(AllScenes::Empty), currentSeconds(0.f), showForSeconds(3.f), textureAllocator(textureAllocator)
+                                     Window &window, SceneStateMachine &sceneManager, Input &input):
+                                     Scene(window, sceneManager, input), workingDir(workingDir), switchToState(AllScenes::Empty), currentSeconds(0.f), showForSeconds(3.f), textureAllocator(textureAllocator)
 {}
 
 void SceneSplashScreen::onCreate() 

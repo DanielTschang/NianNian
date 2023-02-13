@@ -25,6 +25,8 @@ public:
     //Functions
     virtual void move(const float& deltaTime, const float x , const float y);
 
+//    virtual void processInput(const float& deltaTime);
+
     virtual void Update(const float& deltaTime);
     virtual void LateUpdate(const float& deltaTime);
     virtual void Draw(Window& window);

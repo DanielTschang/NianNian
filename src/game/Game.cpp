@@ -2,6 +2,7 @@
 
 void Game::initWindow() {
     this->window = new Window();
+    this->input = new Input();
 }
 
 void Game::initVariables() {
@@ -13,9 +14,9 @@ void Game::initVariables() {
 void Game::initState()
 {
     // This creates a pointer to a scenes.
-    SceneSplashScreen *splashScreen = new SceneSplashScreen(workingDir, *this->textureAllocator, *this->window, *this->sceneManager);
-    SceneMainMenu *MainMenuScene = new SceneMainMenu(workingDir,  *this->window, *this->sceneManager);
-    SceneGame *gameScene = new SceneGame(workingDir, *textureAllocator, *this->window, *this->sceneManager);
+    SceneSplashScreen *splashScreen = new SceneSplashScreen(workingDir, *this->textureAllocator, *this->window, *this->sceneManager, *this->input);
+    SceneMainMenu *MainMenuScene = new SceneMainMenu(this->workingDir,  *this->window, *this->sceneManager, *this->input);
+    SceneGame *gameScene = new SceneGame(this->workingDir, *this->textureAllocator, *this->window, *this->sceneManager, *this->input);
 
 
     //add all scenes to sceneManager
@@ -39,6 +40,7 @@ Game::Game()
 
 Game::~Game() {
     delete this->window;
+    delete this->input;
     delete this->sceneManager;
     delete this->textureAllocator;
 }

@@ -30,7 +30,7 @@ private:
     WorkingDirectory& workingDir;
 public:
     SceneMainMenu();
-    SceneMainMenu(WorkingDirectory& workingDir, Window& window, SceneStateMachine& sceneManager);
+    SceneMainMenu(WorkingDirectory& workingDir, Window& window, SceneStateMachine& sceneManager, Input &input);
     ~SceneMainMenu();
     //init
     void initVariables();

@@ -1,8 +1,8 @@
 #include "SceneMainMenu.hpp"
 
 SceneMainMenu::SceneMainMenu
-(WorkingDirectory& workingDir, Window& window, SceneStateMachine& sceneManager)
-        : Scene(window, sceneManager),workingDir(workingDir) {
+(WorkingDirectory& workingDir, Window& window, SceneStateMachine& sceneManager, Input &input)
+        : Scene(window, sceneManager, input),workingDir(workingDir) {
     this->initVariables();
     this->initButtons();
     this->initBackground();

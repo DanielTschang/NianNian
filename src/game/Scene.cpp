@@ -1,6 +1,6 @@
 #include "Scene.hpp"
 
-Scene::Scene(Window& window, SceneStateMachine& sceneManager) : isClose(false),window(window), sceneManager(sceneManager)
+Scene::Scene(Window& window, SceneStateMachine& sceneManager, Input &input) : isClose(false),window(window), sceneManager(sceneManager), input(input)
 {
 }
 

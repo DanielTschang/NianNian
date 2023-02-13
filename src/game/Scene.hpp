@@ -18,11 +18,11 @@ class Scene
 public:
     bool isClose;
 protected:
-    Scene(Window &window, SceneStateMachine& sceneManager);
+    Scene(Window &window, SceneStateMachine& sceneManager, Input &input);
 
     Window &window;
     SceneStateMachine &sceneManager;
-    Input input;
+    Input &input;
 
     sf::Vector2i mousePosScreen;
     sf::Vector2i mousePosWindow;

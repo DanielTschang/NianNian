@@ -1,3 +1,4 @@
+
 #include "C_Position.hpp"
 
 C_Position::C_Position(Object* owner): 
@@ -5,24 +6,24 @@ C_Position::C_Position(Object* owner):
 
 void C_Position::SetPosition(const float x, const float y)
 {
-  position.x = x;
-  position.y = y;
+    position.x = x;
+    position.y = y;
 }
 
 void C_Position::SetPosition(const sf::Vector2f& pos)
 {
-  position = pos;
+    position = pos;
 }
 
 void C_Position::AddPosition(const float x, const float y)
 {
-  position.x += x;
-  position.y += y;
+    position.x += x;
+    position.y += y;
 }
 
 void C_Position::AddPosition(const sf::Vector2f pos)
 {
-  position += pos;
+    position += pos;
 }
 
 void C_Position::SetX(float x)

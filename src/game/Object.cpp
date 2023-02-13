@@ -47,12 +47,12 @@ void Object::Draw(Window& window)
 
 void Object::QueueForRemoval()
 {
-    queuedForRemoval = true;
+    return;
 }
 
 bool Object::IsQueuedForRemoval()
 {
-    return  queuedForRemoval;
+    return false;
 }
 
 Object::~Object() {

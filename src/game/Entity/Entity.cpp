@@ -2,7 +2,6 @@
 
 Entity::Entity() : movementSpeed(100.f)
 {
-    this->initVariables();
 }
 
 Entity::~Entity() {

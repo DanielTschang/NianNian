@@ -9,7 +9,7 @@ void C_Movement::SetInput(Input* input)
   this->input = input;
 }
 
-void C_Movement::SetMovementSpeed(int moveSpeed)
+void C_Movement::SetMovementSpeed(float moveSpeed)
 {
   this->moveSpeed = moveSpeed;
 }
@@ -44,11 +44,13 @@ void C_Movement::Update(const float& deltaTime)
     {
         animation->SetAnimationState(AnimationState::Walk);
     }
-    
+
+
     float xFrameMove = xMove * deltaTime;
     float yFrameMove = yMove * deltaTime;
-    
     owner->position->AddPosition(xFrameMove, yFrameMove);
+
+
 }
 
 void C_Movement::Awake()

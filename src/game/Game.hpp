@@ -48,6 +48,7 @@ public:
 private:
     Window* window;
     WorkingDirectory workingDir;
+    Input* input;
 
     sf::Clock deltaTimeClock;
     float deltaTime;

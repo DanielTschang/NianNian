@@ -13,12 +13,13 @@ class C_Movement : public Component
   public:
     C_Movement(Object * owner);
     void SetInput(Input* input);
-    void SetMovementSpeed(int moveSpeed);
+    void SetMovementSpeed(float moveSpeed);
     void Update(const float& deltaTime) override;
     void Awake();
     
   private:
-    int moveSpeed; 
+    float currentSpeed;
+    float moveSpeed;
     Input* input;
     std::shared_ptr<C_Animation> animation;
 };
