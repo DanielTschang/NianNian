@@ -12,16 +12,25 @@ class C_Movement : public Component
 {
   public:
     C_Movement(Object * owner);
+    ~C_Movement();
     void SetInput(Input* input);
     void SetMovementSpeed(float moveSpeed);
     void Update(const float& deltaTime) override;
+    void LateUpdate(const float& deltaTime) override;
     void Awake();
     
   private:
-    float currentSpeed;
-    float moveSpeed;
+    float currentSpeedX;
+    float currentSpeedY;
+    float maxMoveSpeed;
+    float acceleration;
+    float deceleration;
     Input* input;
     std::shared_ptr<C_Animation> animation;
+    void exceedMaxSpeedChecker();
+    void animationSetter();
+    void detectKeyboard();
+    void updatePosition(const float& deltaTime);
 };
 
 #endif /* Movement*/
