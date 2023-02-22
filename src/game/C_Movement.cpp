@@ -2,7 +2,7 @@
 
 
 C_Movement::C_Movement(Object* owner):
-        Component(owner), maxMoveSpeed(200), acceleration(5), deceleration(3), currentSpeedX(0), currentSpeedY(0) {}
+        Component(owner), maxMoveSpeed(200), acceleration(10), deceleration(3), currentSpeedX(0), currentSpeedY(0) {}
 
 void C_Movement::SetInput(Input* input)
 {
