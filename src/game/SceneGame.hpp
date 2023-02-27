@@ -9,9 +9,10 @@
 #include "Object.hpp"
 #include "C_Sprite.hpp"
 #include "C_Movement.hpp"
+#include "SharedContext.hpp"
 #include "ObjectCollection.hpp"
 #include "C_Animation.hpp"
-#include "TileMapParser.hpp"
+//#include "TileMapParser.hpp"
 #include "C_DashMovement.hpp"
 #include "Player.hpp"
 
@@ -34,10 +35,14 @@ public:
     void initInput();
     
 private:
+    SharedContext sharedContext;
     ObjectCollection objects;
     WorkingDirectory& workingDir;
     ResourceAllocator<sf::Texture>& textureAllocator;
-    TileMapParser mapParser;
+//    TileMapParser mapParser;
+
+private:
+    void createPlayer();
 };
 
 #endif

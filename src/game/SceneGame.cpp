@@ -2,7 +2,7 @@
 
 SceneGame::SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture>& textureAllocator,
                      Window& window, SceneStateMachine& sceneManager, Input &input)
-                     : Scene(window, sceneManager, input), workingDir(workingDir), textureAllocator(textureAllocator), mapParser(textureAllocator)
+                     : Scene(window, sceneManager, input), workingDir(workingDir), textureAllocator(textureAllocator)
 {
     this->isClose = false;
 }
@@ -10,15 +10,21 @@ SceneGame::SceneGame(WorkingDirectory& workingDir, ResourceAllocator<sf::Texture
 
 void SceneGame::onCreate()
 {
-    std::shared_ptr<Player> player = std::make_shared<Player>(input,this->textureAllocator, workingDir);
-    objects.Add(player);
+    sharedContext.input = &this->input;
+    sharedContext.workingDir = &this->workingDir;
+    sharedContext.objects = &this->objects;
+    sharedContext.window = &this->window;
+    sharedContext.textureAllocator = &this->textureAllocator;
+//    sharedContext.fontAllocator = &this->fontAllocator;
 
-//    sf::Vector2i mapOffset(0, 0);
-//    std::vector<std::shared_ptr<Object>> levelTiles
-//            = mapParser.Parse(workingDir.Get() + "Test Map 1.tmx", mapOffset);
-//
-//    objects.Add(levelTiles);
+    this->createPlayer();
 }
+
+void SceneGame::createPlayer() {
+    std::shared_ptr<Player> player = std::make_shared<Player>(&this->sharedContext);
+    objects.Add(player);
+}
+
 
 void SceneGame::onDestroy()
 {
@@ -53,3 +59,4 @@ void SceneGame::closeScene() {
         this->isClose = true;
     }
 }
+
