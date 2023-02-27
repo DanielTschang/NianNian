@@ -23,6 +23,8 @@ public:
     void SetTextureRect(const sf::IntRect& rect);
     void SetScale(float x, float y);
 
+    sf::Vector2f getSize();
+
 private:
         ResourceAllocator<sf::Texture>* allocator;
 //        sf::Texture* texture;

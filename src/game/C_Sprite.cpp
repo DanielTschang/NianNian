@@ -59,3 +59,12 @@ void C_Sprite::SetScale(float x, float y)
 {
     sprite.setScale(x, y);
 }
+
+sf::Vector2f C_Sprite::getSize() {
+    sf::Vector2f size;
+    size.x = sprite.getGlobalBounds().width;
+    size.y = sprite.getGlobalBounds().height;
+    std::cout << size.x << std::endl;
+    std::cout << size.y << std::endl;
+    return size;
+}

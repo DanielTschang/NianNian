@@ -9,12 +9,7 @@
 #include "Animation.hpp"
 #include "C_Sprite.hpp"
 
-enum class AnimationState
-{
-    None,
-    Idle,
-    Walk
-};
+
 
 class C_Animation : public Component
 {
