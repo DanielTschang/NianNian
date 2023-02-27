@@ -1,35 +1,48 @@
-//
-// Created by danchang11 on 2022/12/16.
-//
-
 #ifndef NIANNIAN_ANIMATION_HPP
 #define NIANNIAN_ANIMATION_HPP
 
 #include <vector>
+#include <iostream>
+#include <functional>
+#include <map>
+#include "Bitmask.hpp"
 
 enum class FacingDirection
 {
     None,
     Left,
-    Right
+    Right,
+    Up,
+    Down
+};
+
+enum class AnimationState
+{
+    None,
+    Idle,
+    Walk,
+    Attack
 };
 
 
 struct FrameData
 {
-    int id; // Texture id (retrieved from our texture allocator).
-    int x; // x position of sprite in the texture.
-    int y; // y position of sprite in the texture.
-    int width; // Width of sprite.
-    int height; // Height of sprite.
-    float displayTimeSeconds; // How long to display the frame.
+    int id;
+    int x;
+    int y;
+    int width;
+    int height;
+    float displayTimeSeconds;
 };
+
+
+using AnimationAction = std::function<void(void)>;
 
 class Animation
 {
 public:
     Animation();
-    Animation(FacingDirection direction);
+
     void AddFrame(int textureID, int x, int y,
                   int width, int height, float frameTime);
 
@@ -39,12 +52,15 @@ public:
 
     void Reset();
 
-    void SetDirection(FacingDirection dir);
-    FacingDirection GetDirection() const;
+    void SetLooped(bool looped);
+    bool IsLooped() const;
+
+    void AddFrameAction(unsigned int frame, AnimationAction action);
 
 private:
-    FacingDirection direction;
+    bool isLooped;
     void IncrementFrame();
+
 
     // Stores all frames for our animation.
     std::vector<FrameData> frames;
@@ -54,6 +70,10 @@ private:
 
     // We use this to decide when to transition to the next frame.
     float currentFrameTime;
+
+    std::map<int, std::vector<AnimationAction>> actions;
+
+    Bitmask framesWithActions;
 };
 
 #endif //NIANNIAN_ANIMATION_HPP

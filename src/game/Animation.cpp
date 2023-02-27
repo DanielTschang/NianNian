@@ -1,14 +1,9 @@
-//
-// Created by danchang11 on 2022/12/16.
-//
-
 #include "Animation.hpp"
 
-Animation::Animation() : frames(0), currentFrameIndex(0),currentFrameTime(0.f)
+Animation::Animation() :  frames(0), currentFrameIndex(0),currentFrameTime(0.f)
 {
 
 }
-Animation::Animation(FacingDirection direction) : frames(0), currentFrameIndex(0), currentFrameTime(0.f), direction(direction) { }
 
 
 void Animation::AddFrame(int textureID, int x, int y,
@@ -63,20 +58,32 @@ void Animation::Reset()
     currentFrameTime = 0.f;
 }
 
-void Animation::SetDirection(FacingDirection dir)
+
+
+void Animation::SetLooped(bool looped)
 {
-    if(direction != dir)
-    {
-        direction = dir;
-        for(auto& f : frames)
-        {
-            f.x += f.width; // 1
-            f.width *= -1;
-        }
-    }
+    isLooped = looped;
 }
 
-FacingDirection Animation::GetDirection() const
+bool Animation::IsLooped() const
 {
-    return direction;
+    return isLooped;
+}
+
+void Animation::AddFrameAction(unsigned int frame, AnimationAction action)
+{
+    if (frame < frames.size())
+    {
+        auto actionKey = actions.find(frame);
+
+        if (actionKey == actions.end())
+        {
+            framesWithActions.SetBit(frame);
+            actions.insert(std::make_pair(frame, std::vector<AnimationAction>{action}));
+        }
+        else
+        {
+            actionKey->second.emplace_back(action);
+        }
+    }
 }

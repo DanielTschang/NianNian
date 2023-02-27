@@ -8,8 +8,10 @@
 #include "Component.hpp"
 #include "Animation.hpp"
 #include "C_Sprite.hpp"
+#include "C_Direction.hpp"
+#include "EnumClassHash.hpp"
 
-
+using AnimationList = std::unordered_map<FacingDirection, std::shared_ptr<Animation>, EnumClassHash>;
 
 class C_Animation : public Component
 {
@@ -20,28 +22,24 @@ public:
 
     void Update(const float& deltaTime) override;
 
-    // Add animation to object. We need its state as well
-    // so that we can switch to it.
-    void AddAnimation(AnimationState state,
-                      std::shared_ptr<Animation> animation);
 
-    // Set current animation states.
+    void AddAnimation(AnimationState state, AnimationList& animationList);
+
     void SetAnimationState(AnimationState state);
 
-    // Returns current animation state.
     const AnimationState& GetAnimationState() const;
 
     void SetAnimationDirection(FacingDirection dir);
 
-private:
-    std::shared_ptr<C_Sprite> sprite; // 1
-    std::map<AnimationState, std::shared_ptr<Animation>> animations;
+    void AddAnimationAction(AnimationState state, FacingDirection dir, int frame, AnimationAction action);
 
-    // We store a reference to the current animation so we
-    // can quickly update and draw it.
+private:
+    std::shared_ptr<C_Sprite> sprite;
+    std::unordered_map<AnimationState, AnimationList, EnumClassHash> animations;
     std::pair<AnimationState,
             std::shared_ptr<Animation>> currentAnimation;
-
+    FacingDirection currentDirection;
+    std::shared_ptr<C_Direction> direction;
 };
 
 #endif /* C_Animation_hpp */
