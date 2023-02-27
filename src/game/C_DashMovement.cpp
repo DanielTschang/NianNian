@@ -5,27 +5,24 @@ C_DashMovement::C_DashMovement(Object *owner) : Component(owner) {
     this->dashDistant = 20.f;
 }
 
-void C_DashMovement::SetInput(Input *input) {
-    this->input = input;
-}
 
 void C_DashMovement::Update(const float &deltaTime) {
-    if(input == nullptr) return;
+    if(owner->context->input == nullptr) return;
     bool isSHIFT = false;
-    if(input->IsKeyPressed(Input::KEY::SHIFT)) {
+    if(owner->context->input->IsKeyPressed(Input::KEY::SHIFT)) {
         isSHIFT = true;
     }
     if(!isSHIFT || !this->cooldownTimer->isValid()) return;
 
     short int xMove = 0, yMove = 0;;
 
-    if(input->IsKeyPressed(Input::KEY::LEFT))
+    if(owner->context->input->IsKeyPressed(Input::KEY::LEFT))
         xMove -= 1;
-    if(input->IsKeyPressed(Input::KEY::RIGHT))
+    if(owner->context->input->IsKeyPressed(Input::KEY::RIGHT))
         xMove += 1;
-    if(input->IsKeyPressed(Input::KEY::UP))
+    if(owner->context->input->IsKeyPressed(Input::KEY::UP))
         yMove -= 1;
-    if(input->IsKeyPressed(Input::KEY::DOWN))
+    if(owner->context->input->IsKeyPressed(Input::KEY::DOWN))
         yMove += 1;
 
     if(xMove >=1){

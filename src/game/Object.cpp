@@ -1,12 +1,13 @@
 #include "Object.hpp"
 
-Object::Object()
+Object::Object(SharedContext* context) : context(context)
 {
-    position = AddComponent<C_Position>();
+    this->position = AddComponent<C_Position>();
 }
 
 void Object::Awake()
 {
+
     for(int i = components.size() - 1; i >= 0; i--)
     {
         components[i]->Awake();

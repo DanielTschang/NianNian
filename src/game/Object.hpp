@@ -7,14 +7,19 @@
 #include "Window.hpp"
 #include "Component.hpp"
 #include "C_Position.hpp"
+#include "SharedContext.hpp"
+#include "Input.hpp"
 
 class Object {
 public:
     std::shared_ptr<C_Position> position;
+    SharedContext* context;
 private:
     std::vector<std::shared_ptr<Component>> components;
 public:
-    Object();
+//    Object();
+    Object() {};
+    Object(SharedContext* context);
     ~Object();
 
     virtual void Awake();

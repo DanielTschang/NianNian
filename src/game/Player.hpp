@@ -9,24 +9,37 @@
 #include "C_Sprite.hpp"
 #include "C_Movement.hpp"
 #include "C_DashMovement.hpp"
+#include "C_Hitbox.hpp"
+#include "C_BasicAttackAnimation.hpp"
 #include "Input.hpp"
 #include "ResourceAllocator.hpp"
 #include "WorkingDirectory.hpp"
+#include <vector>
+#include "EnumClassHash.hpp"
+#include "C_MovementAnimation.hpp"
 
 
 class Player : public Object {
 public:
-    Player( Input &input, ResourceAllocator<sf::Texture> &textureAllocator, WorkingDirectory &workingDir);
+    Player(SharedContext* context);
     ~Player();
+public:
+
 
 private:
     void initVariables();
     void initComponents();
     void initAnimations();
+    void initHitBot();
 private:
-    Input &input;
-    ResourceAllocator<sf::Texture> &textureAllocator;
-    WorkingDirectory &workingDir;
+
+//    ResourceAllocator<sf::Texture> &textureAllocator;
+//    WorkingDirectory &workingDir;
+    std::shared_ptr<C_Animation> animation;
+
+    void createIdleAnimation(const int &TextureID, const int &frameWidth, const int &frameHeight, const std::vector<FacingDirection> directions);
+    void createWalkAnimation(const int &TextureID, const int &frameWidth, const int &frameHeight, const std::vector<FacingDirection> directions);
+    void createAttackAnimation(const int &TextureID, const int &frameWidth, const int &frameHeight, const std::vector<FacingDirection> directions);
 
 };
 
