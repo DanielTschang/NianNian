@@ -2,121 +2,83 @@
 
 
 C_Movement::C_Movement(Object* owner):
-        Component(owner), maxMoveSpeed(200), acceleration(10), deceleration(3), currentSpeedX(0), currentSpeedY(0) {}
-
-void C_Movement::SetInput(Input* input)
-{
-  this->input = input;
-}
-
-void C_Movement::SetMovementSpeed(float maxMoveSpeed)
-{
-  this->maxMoveSpeed = maxMoveSpeed;
-}
+        Component(owner) {}
 
 void C_Movement::Update(const float& deltaTime)
 {
+    //TODO: movement component shouldn't interact with any animation component
+    if(animation->GetAnimationState() == AnimationState::Attack)
+    {
+        return;
+    }
     this->detectKeyboard();
-    this->exceedMaxSpeedChecker();
-    this->animationSetter();
-    this->updatePosition(deltaTime);
-
 }
 
-void C_Movement::exceedMaxSpeedChecker() {
-    if(this->currentSpeedX > 0.f)
-    {
-        if(this->currentSpeedX > this->maxMoveSpeed) this->currentSpeedX = this->maxMoveSpeed;
-    }
-    else if(this->currentSpeedX < 0.f)
-    {
-        if(this->currentSpeedX < -this->maxMoveSpeed) this->currentSpeedX = -this->maxMoveSpeed;
-    }
 
-    if(this->currentSpeedY > 0.f)
-    {
-        if(this->currentSpeedY > this->maxMoveSpeed) this->currentSpeedY = this->maxMoveSpeed;
-    }
-    else if(this->currentSpeedY < 0.f)
-    {
-        if(this->currentSpeedY < -this->maxMoveSpeed) this->currentSpeedY = -this->maxMoveSpeed;
-    }
-}
 
 
 void C_Movement::Awake()
 {
     animation = owner->GetComponent<C_Animation>();
+    velocity = owner->GetComponent<C_Velocity>();
 }
 
-void C_Movement::LateUpdate(const float &deltaTime) {
-    //deceleration
-    if(this->currentSpeedX > 0.f)
-    {
-        this->currentSpeedX -= this->deceleration;
-        if(this->currentSpeedX <= 0.f) this->currentSpeedX = 0.f;
-    }
-    else if(this->currentSpeedX < 0.f)
-    {
-        this->currentSpeedX += this->deceleration;
-        if(this->currentSpeedX >= 0.f) this->currentSpeedX = 0.f;
-    }
-
-    if(this->currentSpeedY > 0.f)
-    {
-        this->currentSpeedY -= this->deceleration;
-        if(this->currentSpeedY <= 0.f) this->currentSpeedY = 0.f;
-    }
-    else if(this->currentSpeedY < 0.f)
-    {
-        this->currentSpeedY += this->deceleration;
-        if(this->currentSpeedY >= 0.f) this->currentSpeedY = 0.f;
-    }
-
-}
+//void C_Movement::LateUpdate(const float &deltaTime) {
+//    //deceleration
+//    if(this->currentSpeedX > 0.f)
+//    {
+//        this->currentSpeedX -= this->deceleration;
+//        if(this->currentSpeedX <= 0.f) this->currentSpeedX = 0.f;
+//    }
+//    else if(this->currentSpeedX < 0.f)
+//    {
+//        this->currentSpeedX += this->deceleration;
+//        if(this->currentSpeedX >= 0.f) this->currentSpeedX = 0.f;
+//    }
+//
+//    if(this->currentSpeedY > 0.f)
+//    {
+//        this->currentSpeedY -= this->deceleration;
+//        if(this->currentSpeedY <= 0.f) this->currentSpeedY = 0.f;
+//    }
+//    else if(this->currentSpeedY < 0.f)
+//    {
+//        this->currentSpeedY += this->deceleration;
+//        if(this->currentSpeedY >= 0.f) this->currentSpeedY = 0.f;
+//    }
+//
+//}
 
 C_Movement::~C_Movement() {
 
 }
 
-void C_Movement::animationSetter() {
-    if(this->currentSpeedX == 0 && this->currentSpeedY == 0)
-    {
-        this->animation->SetAnimationState(AnimationState::Idle);
-    }
-    else
-    {
-        this->animation->SetAnimationState(AnimationState::Walk);
-    }
-}
+
 
 void C_Movement::detectKeyboard() {
-    if(input == nullptr) return;
-
-    if(input->IsKeyPressed(Input::KEY::LEFT))
+    auto currentVelocity = velocity->Get();
+    float currentX = currentVelocity.x;
+    float currentY = currentVelocity.y;
+    float acceleration = velocity->getAcceleration();
+    if(owner->context->input->IsKeyPressed(Input::KEY::LEFT))
     {
-        animation->SetAnimationDirection(FacingDirection::Left);
-        currentSpeedX -= this->acceleration;
+//        animation->SetAnimationDirection(FacingDirection::Left);
+        currentX -= acceleration;
     }
 
-    if(input->IsKeyPressed(Input::KEY::RIGHT)) {
-        animation->SetAnimationDirection(FacingDirection::Right);
-        currentSpeedX += this->acceleration;
+    if(owner->context->input->IsKeyPressed(Input::KEY::RIGHT)) {
+        currentX += acceleration;
     }
 
 
-    if(input->IsKeyPressed(Input::KEY::UP)) {
-        currentSpeedY -= this->acceleration;
+    if(owner->context->input->IsKeyPressed(Input::KEY::UP)) {
+        currentY -= acceleration;
     }
-    if(input->IsKeyPressed(Input::KEY::DOWN)) {
-        currentSpeedY += this->acceleration;
+    if(owner->context->input->IsKeyPressed(Input::KEY::DOWN)) {
+        currentY += acceleration;
     }
 
-}
+    this->velocity->Set(currentX, currentY);
 
-void C_Movement::updatePosition(const float& deltaTime) {
-    float xFrameMove = currentSpeedX * deltaTime;
-    float yFrameMove = currentSpeedY * deltaTime;
-    owner->position->AddPosition(xFrameMove, yFrameMove);
 }
 
