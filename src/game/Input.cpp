@@ -26,6 +26,9 @@ void Input::Update()
     thisFrameKeys.SetBit((int)KEY::SHIFT,
                          (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)));
 
+    thisFrameKeys.SetBit((int)KEY::CTL,
+                         (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)));
+
 
 }
 

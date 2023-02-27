@@ -15,7 +15,8 @@ class Input
             UP = 3,
             DOWN = 4,
             ESC = 5,
-            SHIFT = 6
+            SHIFT = 6,
+            CTL = 7,
         };
 
 
