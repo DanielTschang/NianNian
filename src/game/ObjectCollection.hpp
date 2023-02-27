@@ -1,7 +1,3 @@
-//
-// Created by danchang11 on 2022/12/15.
-//
-
 #ifndef NIANNIAN_OBJECTCOLLECTION_HPP
 #define NIANNIAN_OBJECTCOLLECTION_HPP
 
