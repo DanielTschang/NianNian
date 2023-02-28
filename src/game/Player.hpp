@@ -11,6 +11,7 @@
 #include "C_DashMovement.hpp"
 #include "C_Hitbox.hpp"
 #include "C_BasicAttackAnimation.hpp"
+#include "C_CameraView.hpp"
 #include "Input.hpp"
 #include "ResourceAllocator.hpp"
 #include "WorkingDirectory.hpp"
@@ -23,18 +24,12 @@ class Player : public Object {
 public:
     Player(SharedContext* context);
     ~Player();
-public:
-
-
 private:
     void initVariables();
     void initComponents();
     void initAnimations();
     void initHitBot();
 private:
-
-//    ResourceAllocator<sf::Texture> &textureAllocator;
-//    WorkingDirectory &workingDir;
     std::shared_ptr<C_Animation> animation;
 
     void createIdleAnimation(const int &TextureID, const int &frameWidth, const int &frameHeight, const std::vector<FacingDirection> directions);

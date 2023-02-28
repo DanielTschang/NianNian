@@ -10,8 +10,8 @@ class C_Position : public Component
 {
   public:
     C_Position(Object* owner);
-    void SetPosition(const float x, const float y);
-    void SetPosition(const sf::Vector2f& pos);
+    void setPosition(const float x, const float y);
+    void setPosition(const sf::Vector2f& pos);
     
     void AddPosition(const float x, const float y);
     void AddPosition(sf::Vector2f pos);
@@ -23,7 +23,7 @@ class C_Position : public Component
     void AddX(float x);
     void AddY(float y);
     
-    const sf::Vector2f& GetPosition() const;
+    const sf::Vector2f& getPosition() const;
     
   private:
     sf::Vector2f position;

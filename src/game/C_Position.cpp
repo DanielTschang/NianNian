@@ -4,13 +4,13 @@
 C_Position::C_Position(Object* owner): 
     Component(owner), position(0.f, 0.f) { }
 
-void C_Position::SetPosition(const float x, const float y)
+void C_Position::setPosition(const float x, const float y)
 {
     position.x = x;
     position.y = y;
 }
 
-void C_Position::SetPosition(const sf::Vector2f& pos)
+void C_Position::setPosition(const sf::Vector2f& pos)
 {
     position = pos;
 }
@@ -46,7 +46,7 @@ void C_Position::AddY(float y)
   position.y += y;
 }
 
-const sf::Vector2f& C_Position::GetPosition() const
+const sf::Vector2f& C_Position::getPosition() const
 {
   return position;
 }

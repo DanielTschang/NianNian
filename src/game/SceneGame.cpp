@@ -45,6 +45,7 @@ void SceneGame::Update(const float& deltaTime)
 
 void SceneGame::Draw(Window& window)
 {
+    this->map.Draw(window);
     this->objects.Draw(window);
 }
 

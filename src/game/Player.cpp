@@ -27,6 +27,7 @@ void Player::initComponents() {
     this->AddComponent<C_MovementAnimation>();
     this->initHitBot();
     this->initAnimations();
+    this->AddComponent<C_CameraView>();
 
 
     auto movementDash = this->AddComponent<C_DashMovement>();

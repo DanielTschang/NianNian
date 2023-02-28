@@ -12,6 +12,7 @@
 #include "SharedContext.hpp"
 #include "ObjectCollection.hpp"
 #include "C_Animation.hpp"
+#include "TileMap.hpp"
 //#include "TileMapParser.hpp"
 #include "C_DashMovement.hpp"
 #include "Player.hpp"
@@ -39,6 +40,7 @@ private:
     ObjectCollection objects;
     WorkingDirectory& workingDir;
     ResourceAllocator<sf::Texture>& textureAllocator;
+    TileMap map;
 //    TileMapParser mapParser;
 
 private:
