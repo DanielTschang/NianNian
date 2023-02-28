@@ -1,31 +1,31 @@
-//
-// Created by danchang11 on 2022/12/20.
-//
 
 #ifndef NIANNIAN_TILEMAP_HPP
 #define NIANNIAN_TILEMAP_HPP
 
 #include <SFML/Graphics/Rect.hpp>
+#include "Tile.hpp"
+#include <iostream>
+#include <fstream>
+#include <sstream>
 #include "ResourceAllocator.hpp"
+#include <vector>
 
-struct TileInfo
+class TileMap
 {
-    TileInfo() : tileID(-1)
-    {}
+private:
+    float gridSizeF;
+    unsigned gridSize;
+    unsigned countOfLayers;
+    sf::Vector2u mapSize;
+    std::vector<std::vector<std::vector<Tile>>> map; //3D vector
+public:
+    TileMap();
+    virtual ~TileMap();
+public:
+    void Update(const float& deltaTime);
+    void LateUpdate(const float& deltaTime);
+    void Draw(Window& window);
 
-    TileInfo(int textureID, unsigned int tileID, sf::IntRect textureRect)
-            : textureID(textureID), tileID(tileID), textureRect(textureRect) { }
-
-    int tileID; // the id of the texture that contains the tiles sprite. This will be returned by our texture allocator
-    int textureID;
-    sf::IntRect textureRect;
-};
-
-struct Tile
-{
-    std::shared_ptr<TileInfo> properties;
-    int x;
-    int y;
 };
 
 
