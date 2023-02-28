@@ -92,3 +92,13 @@ void Window::closeWindow() {
 const sf::RenderWindow &Window::getWindow() const {
     return window;
 }
+
+const sf::View& Window::getView() const
+{
+    return window.getView();
+}
+
+void Window::setView(const sf::View& view)
+{
+    window.setView(view);
+}

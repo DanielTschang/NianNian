@@ -20,6 +20,9 @@ public:
     
     bool IsOpen() const;
     void closeWindow();
+
+    void setView(const sf::View& view);
+    const sf::View& getView() const;
     
 private:
     sf::RenderWindow window;
